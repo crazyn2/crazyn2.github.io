@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Run Hadoop Cluster within Docker Containers This project has been repaired several bugs from its original source and been tested stably in Ubuntu 20.04 x86_64.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/11/01/hadoop/hadoop-cluster-docker.png">
+<meta property="og:image" content="http://example.com/2020/11/01/hadoop/hadoop/hadoop-cluster-docker.png">
 <meta property="article:published_time" content="2020-11-01T06:13:47.000Z">
-<meta property="article:modified_time" content="2020-11-01T06:16:08.071Z">
+<meta property="article:modified_time" content="2020-11-01T07:33:04.506Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/01/hadoop/hadoop-cluster-docker.png">
+<meta name="twitter:image" content="http://example.com/2020/11/01/hadoop/hadoop/hadoop-cluster-docker.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -94,7 +94,7 @@
 <li>This project has been repaired several bugs from its original source and been tested stably in Ubuntu 20.04 x86_64.</li>
 </ul>
 <a id="more"></a>
-<p><img src="hadoop-cluster-docker.png" alt="alt tag"></p>
+<p><img src="hadoop/hadoop-cluster-docker.png" alt="alt tag"></p>
 <h3 id="install-docker"><a href="#install-docker" class="headerlink" title="install docker"></a>install docker</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1619824" title="ubuntu 18.04">Ubuntu 18.04</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142034323" title="ubuntu 20.04">Ubuntu 20.04</a></p>
 <h3 id="3-Nodes-Hadoop-Cluster"><a href="#3-Nodes-Hadoop-Cluster" class="headerlink" title="3 Nodes Hadoop Cluster"></a>3 Nodes Hadoop Cluster</h3><h5 id="1-clone-github-repository"><a href="#1-clone-github-repository" class="headerlink" title="1. clone github repository"></a>1. clone github repository</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;crazyn2&#x2F;hadoop-zookeeper-hbase.git</span><br><span class="line">cd hadoop-zookeeper-hbase</span><br></pre></td></tr></table></figure>
@@ -152,7 +152,7 @@
 <p>start-yarn.sh</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### Start DFS manually</span><br></pre></td></tr></table></figure>
 <p>start-dfs.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## Development with VScode + Maven + Java11 + Docker</span><br><span class="line">- VScode plugins:Java Extension Pack(Microsoft), Docker(Microsoft), Remote Explorer(Microsoft)</span><br><span class="line">![Java](MavenJava.png)</span><br><span class="line">![Docker](Docker.png)</span><br><span class="line">![RemoteExplorer](RemoteExplorer.png)</span><br><span class="line">##### 1.maven build java project directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## Development with VScode + Maven + Java11 + Docker</span><br><span class="line">- VScode plugins:Java Extension Pack(Microsoft), Docker(Microsoft), Remote Explorer(Microsoft)</span><br><span class="line">![Java](hadoop&#x2F;MavenJava.png)</span><br><span class="line">![Docker](hadoop&#x2F;Docker.png)</span><br><span class="line">![RemoteExplorer](hadoop&#x2F;RemoteExplorer.png)</span><br><span class="line">##### 1.maven build java project directory</span><br></pre></td></tr></table></figure>
 <p>mvn archetype:generate “-DgroupId=com.companyname.bank” “-DartifactId=consumerBanking” “-DarchetypeArtifactId=maven-archetype-quickstart” “-DinteractiveMode=false”</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##### 2.VScode connect hadoop-master of docker container by Docker and Remote Explorer plugins</span><br><span class="line">click Remote Explorer plugin icon which is in the left extension volumn and right click the expected container &quot;attach the container&quot; chioce.</span><br><span class="line">Then please wait for a while until the VScode remote server applications is installed.By the way, if the Java Extension Pack plugin remote server isn&#39;t installed, you should finish it manually which automatically builds settting.json and launch.json in docker container.</span><br><span class="line">##### 3.Open folder in VScode</span><br><span class="line">##### 4.Build jar file in target directory</span><br></pre></td></tr></table></figure>
 <p>mvn package</p>
