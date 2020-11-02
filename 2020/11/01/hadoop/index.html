@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2020/11/01/hadoop/hadoop/hadoop-cluster-docker.png">
 <meta property="article:published_time" content="2020-11-01T06:13:47.000Z">
-<meta property="article:modified_time" content="2020-11-01T07:33:04.506Z">
+<meta property="article:modified_time" content="2020-11-02T07:32:57.268Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/11/01/hadoop/hadoop/hadoop-cluster-docker.png">
@@ -144,9 +144,9 @@
 <p>chmod +x stop-docker.sh<br>./stop-docker.sh</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### start docker cluster after stopped the cluster</span><br></pre></td></tr></table></figure>
 <p>chmod +x start-docker.sh<br>./start-docker.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[ResourceManager](http:&#x2F;&#x2F;127.0.0.1:8088)</span><br><span class="line"></span><br><span class="line">[NameNode in hadoop2](http:&#x2F;&#x2F;127.0.0.1:50700)</span><br><span class="line"></span><br><span class="line">[NameNode in hadoop3](http:&#x2F;&#x2F;127.0.0.1:9870)</span><br><span class="line"></span><br><span class="line">[Hbase](http:&#x2F;&#x2F;127.0.0.1:16010)</span><br><span class="line"></span><br><span class="line">[Mapreduce](http:&#x2F;&#x2F;127.0.0.1:19888)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[ResourceManager](http:&#x2F;&#x2F;127.0.0.1:8088)</span><br><span class="line"></span><br><span class="line">[NameNode in hadoop2](http:&#x2F;&#x2F;127.0.0.1:50700)</span><br><span class="line"></span><br><span class="line">[NameNode in hadoop3](http:&#x2F;&#x2F;127.0.0.1:9870)</span><br><span class="line"></span><br><span class="line">[Hbase](http:&#x2F;&#x2F;127.0.0.1:16010)</span><br><span class="line"></span><br><span class="line">[Mapreduce](http:&#x2F;&#x2F;127.0.0.1:19888)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>mapred –daemon start historyserver</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Solve the problem</span><br><span class="line">### Complete state</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Solve the problem</span><br><span class="line">### Complete state</span><br></pre></td></tr></table></figure>
 <p>root@hadoop-master:/usr/local/hadoop/logs# jps<br>2148 Jps<br>22 QuorumPeerMain<br>1832 ResourceManager<br>248 NameNode<br>476 SecondaryNameNode</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### Start ResourceManager manually</span><br></pre></td></tr></table></figure>
 <p>start-yarn.sh</p>
