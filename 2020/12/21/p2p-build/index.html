@@ -7,14 +7,14 @@
   
   <title>p2p-build | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="p2p分发文件实验条件：硬件设备:公网ip的tracker服务器,两台客户端机器，可以使用虚拟机代替 软件：客户端: qBittorrent tracker服务器软件:">
+  <meta name="description" content="p2p分发文件搭建测试实验条件：硬件设备:公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替) 软件：客户端: qBittorrent(不建议使用公共代理访问网页，会被禁止访问) tracker服务器软件:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="p2p-build">
 <meta property="og:url" content="http://example.com/2020/12/21/p2p-build/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="p2p分发文件实验条件：硬件设备:公网ip的tracker服务器,两台客户端机器，可以使用虚拟机代替 软件：客户端: qBittorrent tracker服务器软件:">
+<meta property="og:description" content="p2p分发文件搭建测试实验条件：硬件设备:公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替) 软件：客户端: qBittorrent(不建议使用公共代理访问网页，会被禁止访问) tracker服务器软件:">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qBittorrent.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qbittorrent.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/seed.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/show.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/bitcomet.png">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/stat.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/output.png">
 <meta property="article:published_time" content="2020-12-21T13:39:59.000Z">
-<meta property="article:modified_time" content="2020-12-21T13:42:38.013Z">
+<meta property="article:modified_time" content="2020-12-22T05:15:25.432Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qBittorrent.png">
+<meta name="twitter:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qbittorrent.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -97,18 +97,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="p2p分发文件"><a href="#p2p分发文件" class="headerlink" title="p2p分发文件"></a>p2p分发文件</h1><h3 id="实验条件："><a href="#实验条件：" class="headerlink" title="实验条件："></a>实验条件：</h3><h4 id="硬件设备"><a href="#硬件设备" class="headerlink" title="硬件设备:"></a>硬件设备:</h4><p>公网ip的tracker服务器,两台客户端机器，可以使用虚拟机代替</p>
+        <h1 id="p2p分发文件搭建测试"><a href="#p2p分发文件搭建测试" class="headerlink" title="p2p分发文件搭建测试"></a>p2p分发文件搭建测试</h1><h3 id="实验条件："><a href="#实验条件：" class="headerlink" title="实验条件："></a>实验条件：</h3><h4 id="硬件设备"><a href="#硬件设备" class="headerlink" title="硬件设备:"></a>硬件设备:</h4><p>公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替)</p>
 <h4 id="软件："><a href="#软件：" class="headerlink" title="软件："></a>软件：</h4><p>客户端:</p>
-<p>qBittorrent</p>
+<p><a target="_blank" rel="noopener" href="https://www.qbittorrent.org/download.php">qBittorrent</a>(不建议使用公共代理访问网页，会被禁止访问)</p>
 <p>tracker服务器软件:</p>
 <a id="more"></a>
-<p><a target="_blank" rel="noopener" href="https://github.com/webtorrent/bittorrent-tracker" title="bittorrent-tracker">bittorrent-tracker</a>(本次测试用于ubuntu20.04LTS)</p>
-<p><a target="_blank" rel="noopener" href="https://www.bitcomet.com/cn/tools/tracker" title="BitComet Tracker">BitComet Tracker</a>(本次测试用于windows server 2008)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/webtorrent/bittorrent-tracker" title="bittorrent-tracker">bittorrent-tracker</a>(本次测试用于Ubuntu20.04LTS x86_64)</p>
+<p><a target="_blank" rel="noopener" href="https://www.bitcomet.com/cn/tools/tracker" title="BitComet Tracker">BitComet Tracker</a>(本次测试用于windows server 2008 x86_64)</p>
+<p>qBittorrent的高级选中打开内置tracker端口</p>
 <h3 id="1-qBittoren制作种子torrent文件"><a href="#1-qBittoren制作种子torrent文件" class="headerlink" title="1.qBittoren制作种子torrent文件"></a>1.qBittoren制作种子torrent文件</h3><p>注意：</p>
-<p>种子客户端必须是公网ip，否则qBittorrent客户端只能下载文件，无法上传文件。</p>
+<p>种子客户端即上传宿主机必须是公网ip，否则无法上传文件，初步判定为nat技术缺陷，软件无法解决。</p>
 <p>步骤:</p>
 <ol>
-<li><p>打开qBittorrent主界面<br><img src="p2p-build/qBittorrent.png"></p>
+<li><p>打开qBittorrent主界面<br><img src="p2p-build/qbittorrent.png"></p>
 </li>
 <li><p>选择”工具”, 点击生成Torrent,跳出如下界面<br><img src="p2p-build/seed.png"></p>
 </li>
@@ -119,7 +120,7 @@
 </li>
 </ol>
 <p>bittorrent-tracker是开源免费软件，要求nodejs版本&gt;=10(windows server 2008无法安装高版本的nodejs), 版本过低，能运行但是会出现错误。比较适用于新版本的系统，而且能进行二次开发，优先推荐</p>
-<h4 id="windows-server-2008-公网ip"><a href="#windows-server-2008-公网ip" class="headerlink" title="windows server 2008(公网ip)"></a>windows server 2008(公网ip)</h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="p2p-build/config.png"><br><img src="p2p-build/stat.png"><br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
+<h4 id="windows-server-2008-公网ip"><a href="#windows-server-2008-公网ip" class="headerlink" title="windows server 2008(公网ip)"></a>windows server 2008(公网ip)</h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="p2p-build/config.png"><br><img src="p2p-build/stat.png"><br>配置windows防火墙，允许外部访问8080端口，防火墙高级选项中添加8080端口入站规则。本人出于测试方便直接关闭防火墙。<br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
 <h4 id="ubunut20-04-内网ip"><a href="#ubunut20-04-内网ip" class="headerlink" title="ubunut20.04(内网ip)"></a>ubunut20.04(内网ip)</h4><p>安装npm</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp;&amp; sudo apt install npm -y</span><br></pre></td></tr></table></figure>
 <p>安装bittorrent-tracker</p>
@@ -127,7 +128,16 @@
 <p>如出现npm无法找到源,请检查拼写是否存在错误，bittorrent-tracker很容易拼写错误而且发现错误，最好复制粘贴</p>
 <p>启动bittorrent-tracker</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bittorrent-tracker</span><br></pre></td></tr></table></figure>
-<p>输出如下：<br><img src="p2p-build/output.png"><br>则启动成功<br>参考博客:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1784855023/article/details/85016937">https://blog.csdn.net/qq1784855023/article/details/85016937</a></p>
+<p>输出如下：<br><img src="p2p-build/output.png"><br>则启动成功<br>ubuntu配置防火墙，允许外部访问8000端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 8000 &amp;&amp; sudo ufw reload</span><br></pre></td></tr></table></figure>
+<p>本人出于测试方便直接关闭防火墙。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="解决内网种子用户无法上传文件设想方案-本人并未真实测试，纯属参考-："><a href="#解决内网种子用户无法上传文件设想方案-本人并未真实测试，纯属参考-：" class="headerlink" title="解决内网种子用户无法上传文件设想方案(本人并未真实测试，纯属参考)："></a>解决内网种子用户无法上传文件设想方案(本人并未真实测试，纯属参考)：</h3><p>可考虑使用内网穿透端口映射+vpn,二者缺一不可。</p>
+<p>内网穿透只能外网访问内网机器,内网访问tracker服务器依旧是nat转换后的ip地址，不可用，使用vpn访问tracker服务器记录内网BT端口内网穿透映射后的地址。后期开发，可考虑整合qBittorrent和frp实现内网种子客户端作为上传宿主机，同时二者都是开源软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[qBittorrent BT端口] --&gt;B[vpn端口]</span><br><span class="line">B --&gt; C[tracker服务器]</span><br><span class="line">C --&gt; D[服务器记录种子客户端socket地址]</span><br><span class="line">E[qBittorrent下载用户请求下载用户] --&gt; F[tracker服务器返回记录的种子客户端socket地址]</span><br><span class="line">F --&gt; G[下载用户请求种子用户传输文件]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>参考博客:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1784855023/article/details/85016937">https://blog.csdn.net/qq1784855023/article/details/85016937</a></p>
 
       
     </div>
