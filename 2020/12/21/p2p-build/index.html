@@ -15,20 +15,20 @@
 <meta property="og:site_name" content="crazyn的个人博客">
 <meta property="og:description" content="p2p分发文件搭建测试实验条件：硬件设备:公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替) 软件：客户端: qBittorrent(不建议使用公共代理访问网页，会被禁止访问) tracker服务器软件:">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qbittorrent.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/seed.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/show.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/bitcomet.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/start.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/config.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/stat.png">
-<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/output.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/qbittorrent.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/seed.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/show.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/bitcomet.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/start.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/config.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/stat.png">
+<meta property="og:image" content="http://example.com/2020/12/21/p2p-build/output.png">
 <meta property="article:published_time" content="2020-12-21T13:39:59.000Z">
-<meta property="article:modified_time" content="2020-12-22T05:20:07.865Z">
+<meta property="article:modified_time" content="2020-12-23T12:07:45.144Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/12/21/p2p-build/p2p-build/qbittorrent.png">
+<meta name="twitter:image" content="http://example.com/2020/12/21/p2p-build/qbittorrent.png">
   
     <link rel="alternative" href="/atom.xml" title="crazyn的个人博客" type="application/atom+xml">
   
@@ -196,18 +196,18 @@
 <p>种子客户端即上传宿主机必须是公网ip，否则无法上传文件，初步判定为nat技术缺陷，软件无法解决。</p>
 <p>步骤:</p>
 <ol>
-<li><p>打开qBittorrent主界面<br><img src="p2p-build/qbittorrent.png"></p>
+<li><p>打开qBittorrent主界面<br><img src="/2020/12/21/p2p-build/qbittorrent.png"></p>
 </li>
-<li><p>选择”工具”, 点击生成Torrent,跳出如下界面<br><img src="p2p-build/seed.png"></p>
+<li><p>选择”工具”, 点击生成Torrent,跳出如下界面<br><img src="/2020/12/21/p2p-build/seed.png"></p>
 </li>
 <li><p>选择文件或者选择文件夹后，选择完成后开始做种，否则需要手动做种，手动做种需要添加相应的torrent文件，如何对应的位置不存在文件，则会重新下载文件。添加tracker服务的链接，图片中的链接是内网中测试时搭建的。</p>
 </li>
-<li><p>成功做种会生成torrent文件，同时在下载项显示做种<br><img src="p2p-build/show.png"></p>
+<li><p>成功做种会生成torrent文件，同时在下载项显示做种<br><img src="/2020/12/21/p2p-build/show.png"></p>
 <h3 id="2-搭建tracker服务器"><a href="#2-搭建tracker服务器" class="headerlink" title="2.搭建tracker服务器"></a>2.搭建tracker服务器</h3><p>BitComet Tracker是免费许可软件，不开源，最后一次更新是2007年，比较适合于老版本的服务器，比如windows server 2008。</p>
 </li>
 </ol>
 <p>bittorrent-tracker是开源免费软件，要求nodejs版本&gt;=10(windows server 2008无法安装高版本的nodejs), 版本过低，能运行但是会出现错误。比较适用于新版本的系统，而且能进行二次开发，优先推荐</p>
-<h4 id="windows-server-2008-公网ip"><a href="#windows-server-2008-公网ip" class="headerlink" title="windows server 2008(公网ip)"></a>windows server 2008(公网ip)</h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="p2p-build/config.png"><br><img src="p2p-build/stat.png"><br>配置windows防火墙，允许外部访问8080端口，防火墙高级选项中添加8080端口入站规则。本人出于测试方便直接关闭防火墙。<br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
+<h4 id="windows-server-2008-公网ip"><a href="#windows-server-2008-公网ip" class="headerlink" title="windows server 2008(公网ip)"></a>windows server 2008(公网ip)</h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="/2020/12/21/p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="/2020/12/21/p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="/2020/12/21/p2p-build/config.png"><br><img src="/2020/12/21/p2p-build/stat.png"><br>配置windows防火墙，允许外部访问8080端口，防火墙高级选项中添加8080端口入站规则。本人出于测试方便直接关闭防火墙。<br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
 <h4 id="ubunut20-04-内网ip"><a href="#ubunut20-04-内网ip" class="headerlink" title="ubunut20.04(内网ip)"></a>ubunut20.04(内网ip)</h4><p>安装npm</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp;&amp; sudo apt install npm -y</span><br></pre></td></tr></table></figure>
 <p>安装bittorrent-tracker</p>
@@ -215,11 +215,10 @@
 <p>如出现npm无法找到源,请检查拼写是否存在错误，bittorrent-tracker很容易拼写错误而且发现错误，最好复制粘贴</p>
 <p>启动bittorrent-tracker</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bittorrent-tracker</span><br></pre></td></tr></table></figure>
-<p>输出如下：<br><img src="p2p-build/output.png"><br>则启动成功<br>ubuntu配置防火墙，允许外部访问8000端口</p>
+<p>输出如下：<br><img src="/2020/12/21/p2p-build/output.png"><br>则启动成功<br>ubuntu配置防火墙，允许外部访问8000端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 8000 &amp;&amp; sudo ufw reload</span><br></pre></td></tr></table></figure>
 <p>本人出于测试方便直接关闭防火墙。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
-
 
 <h3 id="解决内网种子用户无法上传文件设想方案-本人尚未完全进行测试，纯属理论构想-："><a href="#解决内网种子用户无法上传文件设想方案-本人尚未完全进行测试，纯属理论构想-：" class="headerlink" title="解决内网种子用户无法上传文件设想方案(本人尚未完全进行测试，纯属理论构想)："></a>解决内网种子用户无法上传文件设想方案(本人尚未完全进行测试，纯属理论构想)：</h3><p>可考虑使用内网穿透端口映射frp+vpn,二者缺一不可。</p>
 <p>frp内网穿透经本人测试后，发现只能外网访问内网机器,内网访问tracker服务器依旧是nat转换后的ip地址，不可用，所以需要使用vpn访问tracker服务器记录内网BT端口内网穿透映射后的地址。后期开发，可考虑整合qBittorrent和frp实现内网种子客户端作为上传宿主机，同时二者都是开源软件</p>
