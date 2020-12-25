@@ -53,7 +53,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/img/me_icon.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -111,7 +111,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/img/me_icon.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -374,6 +374,19 @@ Example<figure class="highlight plain"><table><tr><td class="gutter"><pre><span 
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-Hadoop-Cluster-within-Docker-Containers"><span class="toc-number">1.</span> <span class="toc-text">Run Hadoop Cluster within Docker Containers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-docker"><span class="toc-number">1.1.</span> <span class="toc-text">install docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Nodes-Hadoop-Cluster"><span class="toc-number">1.2.</span> <span class="toc-text">3 Nodes Hadoop Cluster</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-clone-github-repository"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">1. clone github repository</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-build-docker-image-or-pull-re-build-image"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">2. build docker image or pull re-build image</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-create-hadoop-network"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">3. create hadoop network</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-start-container"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">4. start container</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-start-hadoop"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">5. start hadoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-run-wordcount"><span class="toc-number">1.2.0.6.</span> <span class="toc-text">6. run wordcount</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arbitrary-size-Hadoop-cluster"><span class="toc-number">1.3.</span> <span class="toc-text">Arbitrary size Hadoop cluster</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-pull-docker-images-and-clone-github-repository"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">1. pull docker images and clone github repository</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-rebuild-docker-image"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">2. rebuild docker image</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-start-container"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">3. start container</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-run-hadoop-cluster"><span class="toc-number">1.3.0.4.</span> <span class="toc-text">4. run hadoop cluster</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-run-hbase"><span class="toc-number">1.3.0.5.</span> <span class="toc-text">7. run hbase</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-start-hbase-shell"><span class="toc-number">1.3.0.6.</span> <span class="toc-text">8. start hbase shell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stop-docker-cluster"><span class="toc-number">1.4.</span> <span class="toc-text">stop docker cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-docker-cluster-after-stopped-the-cluster"><span class="toc-number">1.5.</span> <span class="toc-text">start docker cluster after stopped the cluster</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solve-the-problem"><span class="toc-number">2.</span> <span class="toc-text">Solve the problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Complete-state"><span class="toc-number">2.1.</span> <span class="toc-text">Complete state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start-ResourceManager-manually"><span class="toc-number">2.2.</span> <span class="toc-text">Start ResourceManager manually</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start-DFS-manually"><span class="toc-number">2.3.</span> <span class="toc-text">Start DFS manually</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Development-with-VScode-Maven-Java11-Docker"><span class="toc-number">3.</span> <span class="toc-text">Development with VScode + Maven + Java11 + Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-maven-build-java-project-directory"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">1.maven build java project directory</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-VScode-connect-hadoop-master-of-docker-container-by-Docker-and-Remote-Explorer-plugins"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">2.VScode connect hadoop-master of docker container by Docker and Remote Explorer plugins</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-Open-folder-in-VScode"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">3.Open folder in VScode</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Build-jar-file-in-target-directory"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">4.Build jar file in target directory</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-Run-jar-file-in-hadoop"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">5.Run jar file in hadoop</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referece-Blogs"><span class="toc-number">4.</span> <span class="toc-text">Referece Blogs</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
