@@ -313,10 +313,16 @@ HBase后台查询有时候需要一定时间才能返回数据，默认超时时
 <p>重新设置超时时间，但不要太长，会造成进程僵死，影响用户体验。</p>
 <h4 id="5-Base64解码错误"><a href="#5-Base64解码错误" class="headerlink" title="5.Base64解码错误"></a>5.Base64解码错误</h4><p>原因:</p>
 <p>服务端将传输数据切割后，多次Base64编码后拼接发送，客户端一次性解码抛出IllegalArgumentException，即非法参数异常。</p>
+<p>解决方法:</p>
+<p>服务端一次性把数据Base64编码后发送。建议不要将抛出的异常采用同一种方式处理，不方便排除错误，还要及时查看异常堆栈。</p>
 <h4 id="6-HBase自定义过滤器无法使用"><a href="#6-HBase自定义过滤器无法使用" class="headerlink" title="6.HBase自定义过滤器无法使用"></a>6.HBase自定义过滤器无法使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.hadoop.hbase.DoNotRetryIOException: java.lang.reflect.InvocationTargetException         </span><br><span class="line">    at org.apache.hadoop.hbase.protobuf.ProtobufUtil.toFilter(ProtobufUtil.java:1679)</span><br></pre></td></tr></table></figure>
 <p>解决方法:</p>
 <p>必须通过Google Protocol Buffer 2实现序列化器toByteArray()和反序列化器parseFrom(byte[] rawBytes)</p>
-<p>服务端一次性把数据Base64编码后发送。建议不要将异常一次性解决，会造成无法错误误判，一定要及时查看异常堆栈。</p>
+<h4 id="7-客户端无法接受到报文，使用wireshark抓包所有报文均正常"><a href="#7-客户端无法接受到报文，使用wireshark抓包所有报文均正常" class="headerlink" title="7.客户端无法接受到报文，使用wireshark抓包所有报文均正常"></a>7.客户端无法接受到报文，使用wireshark抓包所有报文均正常</h4><p>后期一次测试中出现一个奇怪的错误，客户端无法接受报文，但是使用wireshark抓包发现一切正常。客户端发送http GET请求，三次握手协议建立连接，服务器返回数据，四次握手协议<br>释放连接。服务器返回的报文内容经查看是指定的内容。怀疑是系统防火墙问题，把服务器软件架设在未开启防火墙的Docker容器中，客户端依旧无法接受数据。回想wireshark抓包过程，所有网络协议标准流程均得到执行，不可能是网络层和传输层的防火墙问题。比对修改前的源代码，发现http报文返回流缺少添加换行符的操作。重新添加操作后，客户端顺利接受到http报文，显示数据。</p>
+<p>原因:</p>
+<p>服务器返回的http报文由于缺少一个换行数导致头部不完整，被客户端自动丢弃。</p>
+<p>解决方法:</p>
+<p>修复http报文格式。</p>
 <blockquote>
 <p>参考网站：<br><a target="_blank" rel="noopener" href="https://coderanch.com/t/668034/application-servers/Migration-Tomcat-WARN-Failed-scan">https://coderanch.com/t/668034/application-servers/Migration-Tomcat-WARN-Failed-scan</a></p>
 </blockquote>
