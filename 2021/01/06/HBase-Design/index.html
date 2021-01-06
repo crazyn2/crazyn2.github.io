@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | crazyn的个人博客</title>
+  <title>HBase Design | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="克莱森的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="crazyn的个人博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="HBase课程设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 实验基础介绍HBase是基于hadoop生态系统zooke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase Design">
+<meta property="og:url" content="http://example.com/2021/01/06/HBase-Design/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="克莱森的博客">
+<meta property="og:description" content="HBase课程设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 实验基础介绍HBase是基于hadoop生态系统zooke">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-01-06T07:21:46.000Z">
+<meta property="article:modified_time" content="2021-01-06T07:22:52.609Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -141,221 +143,268 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-HBase-Design" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      HBase Design
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/06/HBase-Design/" class="archive-article-date">
+
+        
+        <a href="/2021/01/06/HBase-Design/" class="archive-article-date">
   	<time datetime="2021-01-06T07:21:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/06/HBase-Design/">HBase Design</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/02/vsocde-tomcat/" class="archive-article-date">
-  	<time datetime="2021-01-02T03:28:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/02/vsocde-tomcat/">vsocde+tomcat</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <h1 id="HBase课程设计实验报告"><a href="#HBase课程设计实验报告" class="headerlink" title="HBase课程设计实验报告"></a>HBase课程设计实验报告</h1><p>实验环境: Docker容器集群(ctazyn/hadoop-hbase),hadoop-3.2,HBase-1.4</p>
+<p>实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器</p>
+<p>开发IDE: VsCode+Docker插件+Java Extension Pack插件</p>
+<p>辅助工具: Maven</p>
+<h2 id="实验基础介绍"><a href="#实验基础介绍" class="headerlink" title="实验基础介绍"></a>实验基础介绍</h2><p>HBase是基于hadoop生态系统zookeeper和hdfs分布式文件系统的分布式数据库系统，遵循CAP理论，即。HBase为Nosql数据库，本身不支持Sql操作，需要调用HBase的api接口实现insert,replace,delete,update</p>
+<h2 id="实验设计架构"><a href="#实验设计架构" class="headerlink" title="实验设计架构"></a>实验设计架构</h2><h3 id="1-前后端分离，使用http协议传输信息"><a href="#1-前后端分离，使用http协议传输信息" class="headerlink" title="1.前后端分离，使用http协议传输信息"></a>1.前后端分离，使用http协议传输信息</h3><p>由于本实验基于Docker集群的Hadoop和HBase，容器内未自带图形界面，且安装步骤比较繁琐，本人采取前后端分离的方式，实现可操作的图形界面。</p>
+<h4 id="1-前端设计方案"><a href="#1-前端设计方案" class="headerlink" title="1.前端设计方案"></a>1.前端设计方案</h4><p>图形界面完全采用java自带的awt和swing图形界面库，其实也可以采用其他编程语言来实现。</p>
+<ol>
+<li>图形界面代码和功能实现代码分离<br>MyGui类单独实现图形界面，为了便于后期代码维护和修改，Main主类继承MyGui，MyGui类单独实现图形界面，Main类中实现打包数据，发送http请求。修改界面只需修改MyGui类，功能添加修复修改Main类。<figure class="highlight java"><figcaption><span>&#123;.line-numbers&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">MyGui</span></span></span><br></pre></td></tr></table></figure></li>
+<li>http请求使用java原生库，设置超时时间为20秒，Base64解码返回数据。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get_url</span><span class="params">(String url)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    URL httpUrl = <span class="keyword">new</span> URL(url);</span><br><span class="line">    HttpURLConnection connection = (HttpURLConnection) httpUrl.openConnection();</span><br><span class="line">    connection.setConnectTimeout(<span class="number">20</span>*<span class="number">1000</span>);</span><br><span class="line">    connection.setReadTimeout(<span class="number">20</span>*<span class="number">1000</span>);</span><br><span class="line">    StringBuilder content = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="comment">// System.out.println(connection.getResponseCode());</span></span><br><span class="line">    <span class="keyword">if</span> (connection.getResponseCode() == <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="comment">// Thread.sleep(6*1000);</span></span><br><span class="line">        BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(connection.getInputStream()));</span><br><span class="line">        String str;</span><br><span class="line">        <span class="keyword">while</span> ((str = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            content.append(str);</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedReader.close();</span><br><span class="line">        FileWriter file = <span class="keyword">new</span> FileWriter(<span class="string">&quot;log.txt&quot;</span>);</span><br><span class="line">        BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(file);</span><br><span class="line">        bw.write(content.toString());</span><br><span class="line">        bw.close();</span><br><span class="line">        file.close();</span><br><span class="line">        System.out.println(content.toString());</span><br><span class="line">        <span class="keyword">return</span> content.toString();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.err.println(connection.getResponseCode());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+HBase后台查询有时候需要一定时间才能返回数据，默认超时时间可能会导致客户端提前释放等待响应线程，设置超时时间为20秒，Base64解码服务器返回的数据。</li>
+<li>图形界面元素和http请求参数使用数组代替手动赋值<br>图形界面中存在多个不同值的JLabel和JTextField,同时http请求中也存在多个不同的变量名，一般情况下除了手动赋值即每个变量单独一行代码赋值。<figure class="highlight java"><figcaption><span>&#123;.line-numbers&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">jTextFields[<span class="number">0</span>].setText(<span class="string">&quot;Skylit&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">1</span>].setText(<span class="string">&quot;Jenni&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">2</span>].setText(<span class="string">&quot;Manh&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">3</span>].setText(<span class="string">&quot;Midt&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">4</span>].setText(<span class="string">&quot;40&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">5</span>].setText(<span class="string">&quot;50&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">6</span>].setText(<span class="string">&quot;-80&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">7</span>].setText(<span class="string">&quot;-60&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">8</span>].setText(<span class="string">&quot;Entir&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">9</span>].setText(<span class="string">&quot;25&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">10</span>].setText(<span class="string">&quot;450&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">11</span>].setText(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">12</span>].setText(<span class="string">&quot;10&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">13</span>].setText(<span class="string">&quot;40&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">14</span>].setText(<span class="string">&quot;50&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">15</span>].setText(<span class="string">&quot;2019-01-21&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">16</span>].setText(<span class="string">&quot;2020-05-21&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">17</span>].setText(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">18</span>].setText(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">19</span>].setText(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">20</span>].setText(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">21</span>].setText(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">jTextFields[<span class="number">22</span>].setText(<span class="string">&quot;365&quot;</span>);</span><br></pre></td></tr></table></figure>
+可以看到代码量急剧增加，不方便后期维护。本人采用数组的方式，实现定义需要赋值的参数数组，再使用for循环给变量赋值<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String[] test_values=&#123;<span class="string">&quot;Skylit&quot;</span>,<span class="string">&quot;Jenni&quot;</span>,<span class="string">&quot;Manh&quot;</span>,<span class="string">&quot;Midt&quot;</span>,<span class="string">&quot;40&quot;</span>,<span class="string">&quot;50&quot;</span>,<span class="string">&quot;-80&quot;</span>,<span class="string">&quot;-60&quot;</span>,<span class="string">&quot;Entir&quot;</span>,<span class="string">&quot;25&quot;</span>,<span class="string">&quot;450&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;10&quot;</span>,<span class="string">&quot;40&quot;</span>,<span class="string">&quot;50&quot;</span>,<span class="string">&quot;2019-01-21&quot;</span>,<span class="string">&quot;2020-05-21&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;0&quot;</span>,<span class="string">&quot;365&quot;</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;jlabels.length; i++)&#123;</span><br><span class="line">    jTextFields[i].setText(test_values[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+可以看到，采用数组赋值的方法后，代码更加精致，方便了后期的维护</li>
+</ol>
+<h4 id="2-后端设计方案"><a href="#2-后端设计方案" class="headerlink" title="2.后端设计方案"></a>2.后端设计方案</h4><p>设置HBase集群访问权限，其他主机也是可以访问HBase集群，但实际测试中本地运行进程陷入僵死状态，猜测出现rpc执行错误,本人无法解决。曾考虑使用tomcat作为后端服务器，但是实际编程中出现HBase包中的servlet-api与tomcat版本出现冲突,导致运行失败。最后本人采用java网络接口，编写简单的http服务器，调用后台HBase接口，实现查询数据。</p>
+<h5 id="1-HBase增删改查，封装类HExecute"><a href="#1-HBase增删改查，封装类HExecute" class="headerlink" title="1. HBase增删改查，封装类HExecute"></a>1. HBase增删改查，封装类HExecute</h5><p>调用HBase增删改查封装函数，需要先初始化一个HExecute类,构造函数参数为操作的HBase表名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HExecute hExecute = <span class="keyword">new</span> HExecute(<span class="string">&quot;airbnb&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>插入函数：hExecute.insertRow</li>
+</ol>
+<h5 id="2-http服务器"><a href="#2-http服务器" class="headerlink" title="2. http服务器"></a>2. http服务器</h5><blockquote>
+<p>参考博客:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30125555/article/details/85703437">https://blog.csdn.net/qq_30125555/article/details/85703437</a></p>
+</blockquote>
+<p>使用java的SocketServer类监听soket地址，socket.accept阻塞式监听端口，收到请求后，调用ExeThread类开启线程处理事务。</p>
+<ol>
+<li>java原生类并没有对http协议处理的函数，所以本人自己编写了解析http协议的步骤。应用层http协议是基于传输层tcp协议的，本人未实现客户端和服务器的三次握手协议和四次握手协议，java底层可能已经实现。<figure class="highlight java"><figcaption><span>&#123;.line-numbers&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">/*监听端口号，只要是8888就能接收到*/</span></span><br><span class="line">            ServerSocket ss = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="comment">/*实例化客户端，固定套路，通过服务端接受的对象，生成相应的客户端实例*/</span></span><br><span class="line">                Socket socket = ss.accept();</span><br><span class="line">                ExeThread exeThread = <span class="keyword">new</span> ExeThread(socket);</span><br><span class="line">                exeThread.start();</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+外部使用while死循环，socket.accept是阻塞式等待，未接受到请求时程序会停滞，持续监听端口，不会浪费系统资源。</li>
+<li>解析http报文<br>经常碰到的http报文主要是GET和POST，请求数据和提交数据，服务器对这两种不同类型的http报文做出响应。这里本人设计的客户端只发送GET报文，所以客户端主要解析http GET类型报文。返回数据使用Base64编码，避免网络传输中字符被转义丢失。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">public void run()&#123;</span><br><span class="line">    String requestHeader;</span><br><span class="line">    try&#123;</span><br><span class="line">        BufferedReader bd &#x3D; new BufferedReader(new InputStreamReader(this.socket.getInputStream()));</span><br><span class="line">        int contentLength &#x3D; 0;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;String, String&gt; map&#x3D;null;</span><br><span class="line">        while ((requestHeader &#x3D; bd.readLine()) !&#x3D; null &amp;&amp; !requestHeader.isEmpty()) &#123;</span><br><span class="line">            &#x2F;&#x2F; System.out.println(&quot;requestHeader:&quot;+requestHeader);</span><br><span class="line">            &#x2F;**</span><br><span class="line">             * 获得GET参数</span><br><span class="line">             *&#x2F;</span><br><span class="line">            if (requestHeader.startsWith(&quot;GET&quot;)) &#123;</span><br><span class="line">                int begin &#x3D; requestHeader.indexOf(&quot;&#x2F;?&quot;) + 2;</span><br><span class="line">                int end &#x3D; requestHeader.indexOf(&quot;HTTP&#x2F;&quot;);</span><br><span class="line">                String condition &#x3D; requestHeader.substring(begin, end);</span><br><span class="line">                &#x2F;&#x2F;action&#x3D;query&amp;</span><br><span class="line">                if(Pattern.matches(&quot;.*&#x2F;q\\?[a-z]+&#x3D;.*&quot;, condition))&#123;</span><br><span class="line">                    &#x2F;&#x2F; System.out.println(&quot;patttern successful.&quot;);</span><br><span class="line">                    map&#x3D;resolve_param(condition);</span><br><span class="line">                    for(String key:map.keySet())&#123;</span><br><span class="line">                        System.out.println(key+&quot;:&quot;+map.get(key));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                System.out.println(&quot;GET参数是：&quot; + condition);</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;**</span><br><span class="line">             * 获得POST参数</span><br><span class="line">             * 1.获取请求内容长度</span><br><span class="line">             *&#x2F;</span><br><span class="line">            if (requestHeader.startsWith(&quot;Content-Length&quot;)) &#123;</span><br><span class="line">                int begin &#x3D; requestHeader.indexOf(&quot;Content-Lengh:&quot;) + &quot;Content-Length:&quot;.length();</span><br><span class="line">                String postParamterLength &#x3D; requestHeader.substring(begin).trim();</span><br><span class="line">                contentLength &#x3D; Integer.parseInt(postParamterLength);</span><br><span class="line">                System.out.println(&quot;POST参数长度是：&quot; + Integer.parseInt(postParamterLength));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer sb &#x3D; new StringBuffer();</span><br><span class="line">        if (contentLength &gt; 0) &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; contentLength; i++) &#123;</span><br><span class="line">                sb.append((char) bd.read());</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;POST参数是：&quot; + sb.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;*发送回执*&#x2F;</span><br><span class="line">        PrintWriter pw &#x3D; new PrintWriter(socket.getOutputStream());</span><br><span class="line"></span><br><span class="line">        pw.println(&quot;HTTP&#x2F;1.1 200 OK&quot;);</span><br><span class="line">        pw.println(&quot;Content-type:text&#x2F;html&quot;);</span><br><span class="line">        pw.println();</span><br><span class="line">        ArrayList&lt;Filter&gt; filters &#x3D; new ArrayList&lt;Filter&gt;();</span><br><span class="line">        filters &#x3D; generateFilters(filters, map);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        HExecute hExecute &#x3D; new HExecute(&quot;airbnb&quot;);</span><br><span class="line">        </span><br><span class="line">        &#x2F;* Filter filter &#x3D; new SingleColumnValueFilter(Bytes.toBytes(&quot;position&quot;), Bytes.toBytes(&quot;latitude&quot;), CompareOp.GREATER_OR_EQUAL,Bytes.toBytes(&quot;40.8&quot;));</span><br><span class="line">        filters.add(filter); *&#x2F;</span><br><span class="line">        &#x2F;&#x2F;网络传输中部分字符会被转义无法恢复，需要使用base64编码避免字符丢失</span><br><span class="line">        ArrayList&lt;HouseMessage&gt; house_lists &#x3D; hExecute.QueryByCondition(filters);</span><br><span class="line">        final Base64.Encoder encoder &#x3D; Base64.getEncoder();</span><br><span class="line">        String json &#x3D; &quot;&quot;;</span><br><span class="line">        for(HouseMessage houseMessage_tmp: house_lists)&#123;</span><br><span class="line">            json +&#x3D; new Gson().toJson(houseMessage_tmp) + &quot;\n&quot;;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        final byte[] textByte &#x3D; json.getBytes(&quot;UTF-8&quot;);</span><br><span class="line">        final String encodedText &#x3D; encoder.encodeToString(textByte);</span><br><span class="line">        pw.println(encodedText);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F; pw.flush();</span><br><span class="line">        pw.flush();</span><br><span class="line">        pw.close();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    catch(Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>this.socket.getInputStream提取tcp协议的有效内容，BufferedReader bd将其转换为UTF-8格式文本字符流读取文本。根据文本开头内容，判断报文是GET类型还是POST类型，使用正则表达式判断是否为url标准请求，过滤非法请求对服务器的攻击。resolve_param解析http请求链接的参数和取值，返回哈希表数据结构。generateFilters生成过滤器列表，若取值为空，则忽略该参数的筛选条件。调用hExecute.QueryByCondition(filters)，返回查询结果。使用谷歌的Gson把查询返回的类转换为json格式，Base64编码后，发送数据给客户端。</p>
+<h5 id="3-HBase封装增删查改及创建表和删除表"><a href="#3-HBase封装增删查改及创建表和删除表" class="headerlink" title="3. HBase封装增删查改及创建表和删除表"></a>3. HBase封装增删查改及创建表和删除表</h5><p>HBase每次连接需要先初始化配置信息，然后建立连接，最后释放连接，init()封装HBase连接操作，close()封装HBase释放操作。每次执行操作都要建立连接和释放连接，保持进程对HBase的活跃度，避免进程僵死。</p>
+<ol>
+<li>INSERT</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">insertRow</span><span class="params">(String rowKey,String colFamily,String col,String val)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    Table table = connection.getTable(TableName.valueOf(<span class="keyword">this</span>.tableName));</span><br><span class="line">    Put put = <span class="keyword">new</span> Put(rowKey.getBytes());</span><br><span class="line">    put.addColumn(colFamily.getBytes(), col.getBytes(), val.getBytes());</span><br><span class="line">    table.put(put);</span><br><span class="line">    <span class="comment">// System.out.println(&quot;insert row success&quot;);</span></span><br><span class="line">    table.close();</span><br><span class="line">    close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据传入行键，列族，子列族，往数据库中插入数据。<br>2. REPLACE</p>
+<p>HBase中采用时间戳记录插入记录版本，所以不存在修改数据操作，只能给新数据更新的时间戳。要实现替换操作，唯有插入新数据后，根据旧的时间戳或者旧数据为依据，删除数据。<br>3. DELETE<br>HBase删除操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteRow</span><span class="params">(String rowKey,String colFamily,String col)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    Table table = connection.getTable(TableName.valueOf(<span class="keyword">this</span>.tableName));</span><br><span class="line">    <span class="comment">//根据rowKey删除行</span></span><br><span class="line">    Delete delete = <span class="keyword">new</span> Delete(Bytes.toBytes(rowKey));</span><br><span class="line">    delete.addColumn(Bytes.toBytes(colFamily), Bytes.toBytes(col));</span><br><span class="line">    table.delete(delete);</span><br><span class="line">    table.close();</span><br><span class="line">    close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HBase删除数据需要传入参数，行键，列族，子列族。只有一个参数则直接删除所在行、列族或字列族，缺少其中一个参数，则删除其余两个索引的交界处。</p>
+<ol>
+<li>QUERY</li>
+</ol>
+<p>HBase查询大型业务中，主要通过rowKey查询，行索引，根据数据设计行索引，实现快速查找。本次实验中采用HBase过滤器实现查询操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public  ArrayList&lt;HouseMessage&gt; QueryByCondition(ArrayList&lt;Filter&gt; filters) throws IOException&#123;</span><br><span class="line">    init();</span><br><span class="line">    Table table &#x3D; connection.getTable(TableName.valueOf(tableName));</span><br><span class="line">    Scan scan &#x3D; new Scan();</span><br><span class="line">    FilterList filterList1 &#x3D; new FilterList(filters);</span><br><span class="line">    scan.setFilter(filterList1);</span><br><span class="line">    ResultScanner scanner &#x3D; table.getScanner(scan);</span><br><span class="line">    Iterator&lt;Result&gt; results &#x3D; scanner.iterator();</span><br><span class="line">    ArrayList&lt;HouseMessage&gt; house_list &#x3D; new ArrayList&lt;HouseMessage&gt;();</span><br><span class="line">    &#x2F;&#x2F; Result r &#x3D; results.next();</span><br><span class="line">    &#x2F;&#x2F; showCell(r);</span><br><span class="line">    while (results.hasNext())&#123;</span><br><span class="line">        Result r &#x3D; results.next();</span><br><span class="line">        &#x2F;&#x2F; showCell(r);</span><br><span class="line">        house_list.add(getCell(r));</span><br><span class="line">    &#125;</span><br><span class="line">    return house_list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本实验采用hadoop3，以前可能采用HTabel的方式获取表格的引用，但是这种方法在<br>hadoop3中已经过期。这里使用connection.getTable获取对表格的引用，scan类中传入<br>函数参数过滤器列表，执行操作。查询返回结果经过getCell处理后添加进ArrayList<HouseMessage>列表，返回结果。<br>5. 创建表格</HouseMessage></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">createTable</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    Admin admin = connection.getAdmin();</span><br><span class="line">    <span class="comment">//指定表名</span></span><br><span class="line">    <span class="comment">// System.out.println(admin.isTableAvailable(TableName.valueOf(tableName)));</span></span><br><span class="line">    <span class="keyword">if</span> (admin.isTableAvailable(TableName.valueOf(tableName))) &#123;</span><br><span class="line">            admin.disableTable(TableName.valueOf(tableName));</span><br><span class="line">            admin.deleteTable(TableName.valueOf(tableName));  </span><br><span class="line">    &#125;</span><br><span class="line">    HTableDescriptor hbaseTable = <span class="keyword">new</span> HTableDescriptor(TableName.valueOf(tableName));</span><br><span class="line">    hbaseTable.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">    hbaseTable.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">&quot;host&quot;</span>));</span><br><span class="line">    hbaseTable.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">&quot;neighbourhood&quot;</span>));</span><br><span class="line">    hbaseTable.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">&quot;position&quot;</span>));</span><br><span class="line">    hbaseTable.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">&quot;info&quot;</span>));</span><br><span class="line">    admin.createTable(hbaseTable);</span><br><span class="line">    <span class="comment">//关闭连接</span></span><br><span class="line">    admin.close();</span><br><span class="line">    close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前期调试代码中，需要不断修改表格格式，所以创建表格时，先判断表格是否存在，存在则删除，重新创建表格。</p>
+<ol start="6">
+<li>删除表格</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteTable</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    Admin admin = connection.getAdmin();</span><br><span class="line">    <span class="keyword">if</span> (admin.isTableAvailable(TableName.valueOf(tableName))) &#123;</span><br><span class="line">        admin.disableTable(TableName.valueOf(tableName));</span><br><span class="line">        admin.deleteTable(TableName.valueOf(tableName));           </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>从csv文件中读取数据</li>
+</ol>
+<p>csv文件中读取数据必须对数据进行预处理，过滤掉其中的垃圾数据，不然会出现数据库数据错误，本程序报错崩溃。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  ArrayList&lt;String[]&gt; readFromCsvfile(String csvFile) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">    String line = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    String cvsSplitBy = <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//获取文件总行数</span></span><br><span class="line">    <span class="keyword">long</span> linesNumber = <span class="number">0</span>;</span><br><span class="line">    FileReader fileReader = <span class="keyword">new</span> FileReader(csvFile);</span><br><span class="line">    LineNumberReader lineNumberReader = <span class="keyword">new</span> LineNumberReader(fileReader);</span><br><span class="line">    lineNumberReader.skip(Long.MAX_VALUE);</span><br><span class="line">    linesNumber = lineNumberReader.getLineNumber() + <span class="number">1</span>;</span><br><span class="line">    fileReader.close();</span><br><span class="line">    lineNumberReader.close();</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;文件总行数:&quot;</span> + linesNumber);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(csvFile));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    index = br.readLine().split(cvsSplitBy);</span><br><span class="line">    <span class="comment">//根据</span></span><br><span class="line">    ArrayList&lt;String[]&gt; allString = <span class="keyword">new</span> ArrayList&lt;String[]&gt;();</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>)&#123; <span class="comment">// 读取到的内容给line变量</span></span><br><span class="line">    </span><br><span class="line">        String[] message = line.split(cvsSplitBy);</span><br><span class="line">        <span class="keyword">if</span>(message.length != <span class="number">16</span>)&#123; <span class="comment">//过滤存在噪声行的负面影</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        allString.add(message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> allString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数中每读取csv一行，根据逗号分割字符串得到字符串数组。因为列数为16，所以得到字符串数组非16,则过滤。这里存在部分问题，如name列值为”Lovely Room 1, Garden, Best Area, Legal rental”，其中存在逗号，切割后数据损坏，可以考虑增加正则表达式处理，但是这里直接过滤调一行数据。这里是先把数据读进内存，然后再插入数据库，所以文件过大的话，尽量读取一行数据就插入数据库。</p>
+<h3 id="实验中所遇问题"><a href="#实验中所遇问题" class="headerlink" title="实验中所遇问题"></a>实验中所遇问题</h3><h4 id="1-hbase插入十多条数据后，进程陷入僵死状态"><a href="#1-hbase插入十多条数据后，进程陷入僵死状态" class="headerlink" title="1.hbase插入十多条数据后，进程陷入僵死状态"></a>1.hbase插入十多条数据后，进程陷入僵死状态</h4><p>原因：</p>
+<p>原有java代码每次插入数据时，都要初始化hbase数据库连接，同时释放连接。本人认为这会增加程序运算量，修改为插入前初始化hbase数据库，所有插入操作完成后释放连接。猜测内存无法及时释放，java垃圾回收机制不是特别给力，也可能是hbase连接进程的资源调度策略问题。</p>
+<p>收获：</p>
+<p>多次初始化和释放连接，虽然会增加程序计算量和系统开销，但是会保持进程的活跃度,同时保证了线程安全，利远远大于弊。</p>
+<h4 id="2-hbase主节点容器因个别原因被重新创建，hbase无法创建表"><a href="#2-hbase主节点容器因个别原因被重新创建，hbase无法创建表" class="headerlink" title="2.hbase主节点容器因个别原因被重新创建，hbase无法创建表"></a>2.hbase主节点容器因个别原因被重新创建，hbase无法创建表</h4><p>错误信息：</p>
+<p>Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hbase.TableExistsException): airbnb</p>
+<p>原因:</p>
+<p>主节点被销毁重建后，原有数据被清空，而子节点数据记录信息还在，导致主节点和子结点数据信息发生冲突</p>
+<p>解决方法：</p>
+<p>手动操作zookeeper命令行调用接口，清除所有节点hdfs原有/hbase节点，最直接的方法整个集群销毁后重新创建</p>
+<h4 id="3-Tomcat与hadoop-hbase-jar包发生冲突"><a href="#3-Tomcat与hadoop-hbase-jar包发生冲突" class="headerlink" title="3.Tomcat与hadoop-hbase jar包发生冲突"></a>3.Tomcat与hadoop-hbase jar包发生冲突</h4><h5 id="1-tomcat-lib所在目录的servlet-api-jar与hadoop-hbase-jar中包含或者自动引入的servlet-api-jar版本发生冲突，tomcat启动必须使用与之兼容的servlet-api-jar-即tomcat-lib所在目录的servlet-api-jar，最后导致SEVERE-A-child-container-failed-during-start"><a href="#1-tomcat-lib所在目录的servlet-api-jar与hadoop-hbase-jar中包含或者自动引入的servlet-api-jar版本发生冲突，tomcat启动必须使用与之兼容的servlet-api-jar-即tomcat-lib所在目录的servlet-api-jar，最后导致SEVERE-A-child-container-failed-during-start" class="headerlink" title="1.tomcat lib所在目录的servlet-api.jar与hadoop-hbase jar中包含或者自动引入的servlet-api.jar版本发生冲突，tomcat启动必须使用与之兼容的servlet-api.jar,即tomcat lib所在目录的servlet-api.jar，最后导致SEVERE: A child container failed during start"></a>1.tomcat lib所在目录的servlet-api.jar与hadoop-hbase jar中包含或者自动引入的servlet-api.jar版本发生冲突，tomcat启动必须使用与之兼容的servlet-api.jar,即tomcat lib所在目录的servlet-api.jar，最后导致SEVERE: A child container failed during start</h5><p>解决方法：</p>
+<ol>
+<li><p>如何是.classpath中引入外部包，引用时tomcat/lib/serlet-api.jar先写进.classpath</p>
+</li>
+<li><p>maven引入外部包的，需要把非tomcat外部包的serlet-api排除,参考如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-hadoop-hbase<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考博客：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/langeldep/article/details/83150845">https://blog.csdn.net/langeldep/article/details/83150845</a></p>
+</blockquote>
+<h5 id="2-添加hadoop-hbase依赖项后，嵌入式tomcat启动时，报错找不到依赖项java-io-FileNotFoundException-com-sun-xml-bind-jaxb-impl-jars-jaxb-api-jar"><a href="#2-添加hadoop-hbase依赖项后，嵌入式tomcat启动时，报错找不到依赖项java-io-FileNotFoundException-com-sun-xml-bind-jaxb-impl-jars-jaxb-api-jar" class="headerlink" title="2.添加hadoop-hbase依赖项后，嵌入式tomcat启动时，报错找不到依赖项java.io.FileNotFoundException: \com.sun.xml.bind\jaxb-impl\jars\jaxb-api.jar"></a>2.添加hadoop-hbase依赖项后，嵌入式tomcat启动时，报错找不到依赖项java.io.FileNotFoundException: <some_path>\com.sun.xml.bind\jaxb-impl\jars\jaxb-api.jar</some_path></h5><p>原因分析：<br>显示找不到的依赖项在jdk中已经自带，但是又再次引入，导致java虚拟机无法分辨引用哪个依赖项，形成tomcat的一个缺陷。</p>
+</li>
+</ol>
+<p>解决方法:</p>
+<p>删除配置文件中再次引用的依赖项配置信息，本人尝试失败。本人是直接把tomcat和hadoop-hbase安装包中的jar文件导入，所以无法单独删除jdk自带包的引用配置信息，使用pol.xml需要逐个排除重复的依赖项，非常浪费时间。最后本人放弃tomcat部署项目的想法，使用java socket编写一个简易的http服务器，虽然查阅资料显示tomcat+hbase数据库是可行的。</p>
+<h4 id="4-服务器查询时间过长，导致前端无法接受响应，认为网络故障"><a href="#4-服务器查询时间过长，导致前端无法接受响应，认为网络故障" class="headerlink" title="4.服务器查询时间过长，导致前端无法接受响应，认为网络故障"></a>4.服务器查询时间过长，导致前端无法接受响应，认为网络故障</h4><p>网络经常受到外界因素的干扰，为了避免等待丢失的包浪费时间，网络协议中经常设置定时器，若是时间到了还未接受到响应，则释放资源不再等待。</p>
+<p>解决方法:</p>
+<p>重新设置超时时间，但不要太长，会造成进程僵死，影响用户体验。</p>
+<h4 id="5-Base64解码错误"><a href="#5-Base64解码错误" class="headerlink" title="5.Base64解码错误"></a>5.Base64解码错误</h4><p>原因:</p>
+<p>服务端将传输数据切割后，多次Base64编码后拼接发送，客户端一次性解码抛出IllegalArgumentException，即非法参数异常。</p>
+<h4 id="6-HBase自定义过滤器无法使用"><a href="#6-HBase自定义过滤器无法使用" class="headerlink" title="6.HBase自定义过滤器无法使用"></a>6.HBase自定义过滤器无法使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.hadoop.hbase.DoNotRetryIOException: java.lang.reflect.InvocationTargetException         </span><br><span class="line">    at org.apache.hadoop.hbase.protobuf.ProtobufUtil.toFilter(ProtobufUtil.java:1679)</span><br></pre></td></tr></table></figure>
+<p>解决方法:</p>
+<p>必须通过Google Protocol Buffer 2实现序列化器toByteArray()和反序列化器parseFrom(byte[] rawBytes)</p>
+<p>服务端一次性把数据Base64编码后发送。建议不要将异常一次性解决，会造成无法错误误判，一定要及时查看异常堆栈。</p>
+<blockquote>
+<p>参考网站：<br><a target="_blank" rel="noopener" href="https://coderanch.com/t/668034/application-servers/Migration-Tomcat-WARN-Failed-scan">https://coderanch.com/t/668034/application-servers/Migration-Tomcat-WARN-Failed-scan</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/21/p2p-build/" class="archive-article-date">
-  	<time datetime="2020-12-21T13:39:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/21/p2p-build/">p2p-build</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/06/HBase-Design/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/17/asr-comparison/" class="archive-article-date">
-  	<time datetime="2020-12-17T04:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/02/vsocde-tomcat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vsocde+tomcat</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/17/asr-comparison/">asr-comparison</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HBase%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">HBase课程设计实验报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">实验基础介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">实验设计架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%8C%E4%BD%BF%E7%94%A8http%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.前后端分离，使用http协议传输信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">1.前端设计方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.后端设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HBase%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%EF%BC%8C%E5%B0%81%E8%A3%85%E7%B1%BBHExecute"><span class="toc-number">1.2.1.2.1.</span> <span class="toc-text">1. HBase增删改查，封装类HExecute</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-http%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.1.2.2.</span> <span class="toc-text">2. http服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-HBase%E5%B0%81%E8%A3%85%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9%E5%8F%8A%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">1.2.1.2.3.</span> <span class="toc-text">3. HBase封装增删查改及创建表和删除表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%AD%E6%89%80%E9%81%87%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.2.</span> <span class="toc-text">实验中所遇问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-hbase%E6%8F%92%E5%85%A5%E5%8D%81%E5%A4%9A%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E8%BF%9B%E7%A8%8B%E9%99%B7%E5%85%A5%E5%83%B5%E6%AD%BB%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1.hbase插入十多条数据后，进程陷入僵死状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-hbase%E4%B8%BB%E8%8A%82%E7%82%B9%E5%AE%B9%E5%99%A8%E5%9B%A0%E4%B8%AA%E5%88%AB%E5%8E%9F%E5%9B%A0%E8%A2%AB%E9%87%8D%E6%96%B0%E5%88%9B%E5%BB%BA%EF%BC%8Chbase%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.hbase主节点容器因个别原因被重新创建，hbase无法创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Tomcat%E4%B8%8Ehadoop-hbase-jar%E5%8C%85%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3.Tomcat与hadoop-hbase jar包发生冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-tomcat-lib%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95%E7%9A%84servlet-api-jar%E4%B8%8Ehadoop-hbase-jar%E4%B8%AD%E5%8C%85%E5%90%AB%E6%88%96%E8%80%85%E8%87%AA%E5%8A%A8%E5%BC%95%E5%85%A5%E7%9A%84servlet-api-jar%E7%89%88%E6%9C%AC%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81%EF%BC%8Ctomcat%E5%90%AF%E5%8A%A8%E5%BF%85%E9%A1%BB%E4%BD%BF%E7%94%A8%E4%B8%8E%E4%B9%8B%E5%85%BC%E5%AE%B9%E7%9A%84servlet-api-jar-%E5%8D%B3tomcat-lib%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95%E7%9A%84servlet-api-jar%EF%BC%8C%E6%9C%80%E5%90%8E%E5%AF%BC%E8%87%B4SEVERE-A-child-container-failed-during-start"><span class="toc-number">1.2.2.3.1.</span> <span class="toc-text">1.tomcat lib所在目录的servlet-api.jar与hadoop-hbase jar中包含或者自动引入的servlet-api.jar版本发生冲突，tomcat启动必须使用与之兼容的servlet-api.jar,即tomcat lib所在目录的servlet-api.jar，最后导致SEVERE: A child container failed during start</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%B7%BB%E5%8A%A0hadoop-hbase%E4%BE%9D%E8%B5%96%E9%A1%B9%E5%90%8E%EF%BC%8C%E5%B5%8C%E5%85%A5%E5%BC%8Ftomcat%E5%90%AF%E5%8A%A8%E6%97%B6%EF%BC%8C%E6%8A%A5%E9%94%99%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BE%9D%E8%B5%96%E9%A1%B9java-io-FileNotFoundException-com-sun-xml-bind-jaxb-impl-jars-jaxb-api-jar"><span class="toc-number">1.2.2.3.2.</span> <span class="toc-text">2.添加hadoop-hbase依赖项后，嵌入式tomcat启动时，报错找不到依赖项java.io.FileNotFoundException: \com.sun.xml.bind\jaxb-impl\jars\jaxb-api.jar</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%89%8D%E7%AB%AF%E6%97%A0%E6%B3%95%E6%8E%A5%E5%8F%97%E5%93%8D%E5%BA%94%EF%BC%8C%E8%AE%A4%E4%B8%BA%E7%BD%91%E7%BB%9C%E6%95%85%E9%9A%9C"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">4.服务器查询时间过长，导致前端无法接受响应，认为网络故障</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Base64%E8%A7%A3%E7%A0%81%E9%94%99%E8%AF%AF"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">5.Base64解码错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-HBase%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%87%E6%BB%A4%E5%99%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">6.HBase自定义过滤器无法使用</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/09/nvidia-error/" class="archive-article-date">
-  	<time datetime="2020-12-09T04:13:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/09/nvidia-error/">nvidia-error</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hadoop/" class="archive-article-date">
-  	<time datetime="2020-11-01T06:13:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hadoop/">hadoop</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T05:07:15.339Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -378,8 +427,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
