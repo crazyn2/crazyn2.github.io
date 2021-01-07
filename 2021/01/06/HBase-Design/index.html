@@ -16,7 +16,7 @@
 <meta property="og:description" content="HBase设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 实验基础介绍HBase是基于hadoop生态系统zookeep">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-06T07:21:46.000Z">
-<meta property="article:modified_time" content="2021-01-07T10:26:17.603Z">
+<meta property="article:modified_time" content="2021-01-07T12:02:08.430Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@ HBase后台查询有时候需要一定时间才能返回数据，默认超时时
 <p>HBase中采用时间戳记录插入记录版本，所以不存在修改数据操作，只能给新数据更新的时间戳。要实现替换操作，唯有插入新数据后，根据旧的时间戳或者旧数据为依据，删除数据。<br>3. DELETE<br>HBase删除操作</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteRow</span><span class="params">(String rowKey,String colFamily,String col)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    Table table = connection.getTable(TableName.valueOf(<span class="keyword">this</span>.tableName));</span><br><span class="line">    <span class="comment">//根据rowKey删除行</span></span><br><span class="line">    Delete delete = <span class="keyword">new</span> Delete(Bytes.toBytes(rowKey));</span><br><span class="line">    delete.addColumn(Bytes.toBytes(colFamily), Bytes.toBytes(col));</span><br><span class="line">    table.delete(delete);</span><br><span class="line">    table.close();</span><br><span class="line">    close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>HBase删除数据需要传入参数，行键，列族，子列族。只有一个参数则直接删除所在行、列族或字列族，缺少其中一个参数，则删除其余两个索引的交界处。</p>
-<ol>
+<ol start="4">
 <li>QUERY</li>
 </ol>
 <p>HBase查询大型业务中，主要通过rowKey查询，行索引，根据数据设计行索引，实现快速查找。本次实验中采用HBase过滤器实现查询操作。</p>
