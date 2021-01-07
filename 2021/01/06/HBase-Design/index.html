@@ -16,7 +16,7 @@
 <meta property="og:description" content="HBase课程设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 实验基础介绍HBase是基于hadoop生态系统zooke">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-06T07:21:46.000Z">
-<meta property="article:modified_time" content="2021-01-06T15:28:41.933Z">
+<meta property="article:modified_time" content="2021-01-07T03:03:11.910Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -168,6 +168,7 @@
 <p>开发IDE: VsCode+Docker插件+Java Extension Pack插件</p>
 <p>辅助工具: Maven</p>
 <h2 id="实验基础介绍"><a href="#实验基础介绍" class="headerlink" title="实验基础介绍"></a>实验基础介绍</h2><p>HBase是基于hadoop生态系统zookeeper和hdfs分布式文件系统的分布式数据库系统，遵循CAP理论，即。HBase为Nosql数据库，本身不支持Sql操作，需要调用HBase的api接口实现insert,replace,delete,update</p>
+<a id="more"></a>
 <h2 id="实验设计架构"><a href="#实验设计架构" class="headerlink" title="实验设计架构"></a>实验设计架构</h2><h3 id="1-前后端分离，使用http协议传输信息"><a href="#1-前后端分离，使用http协议传输信息" class="headerlink" title="1.前后端分离，使用http协议传输信息"></a>1.前后端分离，使用http协议传输信息</h3><p>由于本实验基于Docker集群的Hadoop和HBase，容器内未自带图形界面，且安装步骤比较繁琐，本人采取前后端分离的方式，实现可操作的图形界面。</p>
 <h4 id="1-前端设计方案"><a href="#1-前端设计方案" class="headerlink" title="1.前端设计方案"></a>1.前端设计方案</h4><p>图形界面完全采用java自带的awt和swing图形界面库，其实也可以采用其他编程语言来实现。</p>
 <ol>

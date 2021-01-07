@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Postgresql-Design | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="克莱森的博客">
+  <meta name="description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析1.1 数据需求描述(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Postgresql-Design">
 <meta property="og:url" content="http://example.com/2021/01/06/Postgresql-Design/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="克莱森的博客">
+<meta property="og:description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析1.1 数据需求描述(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-06T07:24:16.000Z">
-<meta property="article:modified_time" content="2021-01-06T07:24:16.378Z">
+<meta property="article:modified_time" content="2021-01-07T03:04:29.814Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -163,7 +163,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="数据库管理课程设计"><a href="#数据库管理课程设计" class="headerlink" title="数据库管理课程设计"></a>数据库管理课程设计</h1><p>实验平台: Window 10 x86_64 英特尔i7八核处理器</p>
+<p>数据库: Postgresql</p>
+<p>编程语言: Java</p>
+<p>架构：Postgresql数据库+Java调用+图形界面</p>
+<h2 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1.需求分析"></a>1.需求分析</h2><h3 id="1-1-数据需求描述"><a href="#1-1-数据需求描述" class="headerlink" title="1.1 数据需求描述"></a>1.1 数据需求描述</h3><p>(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用于统计某一地区的学生数；<br>(2)课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分等数据项，课程根据班级开设。<br>(3)教师信息至少需要包含教师编号、姓名、性别、年龄、职称、联系电话<br>等数据项；<br>(4)学生成绩至少需要学号，学期，课程名称，成绩，任课老师等数据项；<br>###1.2 系统功能需求<br>学生成绩按每学年成绩统计 <br>学生成绩名次排定 <br>每门课程平均成绩统计 <br>学生所学课程及学分统计 <br>对每个学生输入成绩的时候，自动生成学生的已修学分总数 <br>学生成绩查询 <br>教师任课查询 <br>班级课程开设查询</p>
+<h3 id="1-3-性能需求"><a href="#1-3-性能需求" class="headerlink" title="1.3 性能需求"></a>1.3 性能需求</h3><h3 id="1-4-数据字典"><a href="#1-4-数据字典" class="headerlink" title="1.4 数据字典"></a>1.4 数据字典</h3><ul>
+<li>数据字典的用途：进行详细的数据收集和数据分析所获得的主要结果</li>
+<li>数据字典的内容<ul>
+<li>数据项</li>
+<li>数据结构</li>
+<li>数据流</li>
+<li>数据存储</li>
+<li>处理过程</li>
+</ul>
+</li>
+</ul>
+<p>例：学生学籍管理子系统的数据字典。<br>数据项，以“学号”为例<br>数据项<br>学号<br>含义说明<br>唯一标识每个学生<br>别名<br>学生编号<br>类型<br>字符型<br>长度</p>
+<h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p>取值范围<br>00000000至99999999<br>取值含义<br>前两位标别该学生所在年级，后六位按顺序编号<br>与其他数据项的逻辑关系</p>
+<p>数据结构，以“学生”为例<br>“学生”是该系统中的一个核心数据结构：<br>数据结构<br>学生<br>含义说明<br>是学籍管理子系统的主体数据结构，定义了一个学生的有关信息<br><strong>组成</strong><br>学号、姓名、性别、年龄、生源所在地、已修学分总数</p>
+<p>数据结构<br>课程<br>含义说明<br>是学籍管理子系统的主体数据结构，定义了一个课程的有关信息<br>组成<br>课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、开课学时、考核方式(考试或考查)、学分、开设班级</p>
+<p>数据结构<br>教师<br>含义说明<br>是学籍管理子系统的主体数据结构，定义了一个教师的有关信息<br>组成<br>教师编号、姓名、性别、年龄、职称、联系电话</p>
+<p>数据结构<br>学生成绩<br>含义说明<br>是学籍管理子系统的主体数据结构，定义了一个学生的有关信息<br>组成<br>学号，学期，课程名称，成绩，任课老师</p>
+<p>数据流，“学生成绩按每学年成绩统计”可如下描述：<br>数据流：学生成绩按每学年成绩统计<br>说明：学生成绩按每学年成绩统计<br>数据流来源：成绩<br>数据流去向：查询<br>组成：学年，学号，统计成绩<br>平均流量：1000<br>高峰期流量：10000<br>数据流，“学生成绩名次排定”可如下描述：<br>数据流：学生成绩名次排定<br>说明：学生成绩名次排定<br>数据流来源：成绩<br>数据流去向：查询<br>组成：课程号，平均成绩<br>平均流量：1000<br>高峰期流量：10000</p>
+<p>数据流，“学生所学课程及学分统计”可如下描述：<br>数据流：学生所学课程及学分统计<br>说明：学生所学课程及学分统计<br>数据流来源：成绩<br>数据流去向：查询<br>组成：学号，统计成绩<br>平均流量：1000<br>高峰期流量：10000</p>
+<p>数据流，“学生成绩查询”可如下描述：<br>数据流：学生成绩查询<br>说明：学生成绩查询<br>数据流来源：成绩<br>数据流去向：查询<br>组成：学号，课程号，统计成绩<br>平均流量：1000<br>高峰期流量：10000</p>
+<p>数据流，“班级课程开设查询”可如下描述：<br>数据流：班级课程开设查询<br>说明：班级课程开设查询<br>数据流来源：课程<br>数据流去向：查询<br>组成：课程号，课程名，班级号<br>平均流量：1000<br>高峰期流量：10000</p>
+<p>数据流，“教师任课查询”可如下描述：<br>数据流：教师任课查询<br>说明：教师任课查询<br>数据流来源：课程<br>数据流去向：查询<br>组成：教师号，课程号，课程名<br>平均流量：1000<br>高峰期流量：10000</p>
+<p>数据存储，“自动生成学生的已修学分总数”可如下描述：<br>数据存储：学生个人信息表<br>说明：记录学生的总学分<br>流入数据流：学生成绩<br>流出数据流：学生学分<br>组成：总学分<br>数据量：每年3000张<br>存取方式：随机存取</p>
+<h2 id="2-概念结构设计"><a href="#2-概念结构设计" class="headerlink" title="2 概念结构设计"></a>2 概念结构设计</h2><p>在需求分析的基础上，建立系统的E-R模型，即首先建立局部E-R图，然后合并局部E-R图，形成初步的全局E-R图，最后优化全局E-R图。理解概念结构设计是数据库应用系统设计和实现中的关键步骤，特别掌握冲突的处理方法。</p>
+<p>采用合适工具画，如ERWIN，office visio，Power Designer等。</p>
+<pre><code>• 自底向上设计概念结构的步骤 
+第1步：抽象数据并设计局部视图
+第2步：集成局部视图，得到全局概念结构</code></pre>
+<p>图 4自底向上设计概念结构的步骤</p>
+<h3 id="2-1-局部E-R图"><a href="#2-1-局部E-R图" class="headerlink" title="2.1 局部E-R图"></a>2.1 局部E-R图</h3><h3 id="2-2-全局E-R图"><a href="#2-2-全局E-R图" class="headerlink" title="2.2 全局E-R图"></a>2.2 全局E-R图</h3><h3 id="2-3-优化后的全局E-R图"><a href="#2-3-优化后的全局E-R图" class="headerlink" title="2.3 优化后的全局E-R图"></a>2.3 优化后的全局E-R图</h3><h2 id="3-逻辑结构设计"><a href="#3-逻辑结构设计" class="headerlink" title="3 逻辑结构设计"></a>3 逻辑结构设计</h2><p>利用E-R模型到关系模式的转换方法，将E-R图转换为关系模式，并对关系模式进行优化，并根据数据字典和第三节的个性化要求，设计数据库中的基本表。</p>
+<p>掌握概念结构转换为某个具体DBMS支持的逻辑结构的方法，学会逻辑结构优化与规范化的矛盾折中技巧。</p>
+<h3 id="3-1-关系模式设计"><a href="#3-1-关系模式设计" class="headerlink" title="3.1 关系模式设计"></a>3.1 关系模式设计</h3><p>学生(学号、姓名、性别、年龄、生源所在地、已修学分)<br>课程(课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分、班级)<br>教师(教师编号、姓名、性别、年龄、职称、联系电话)<br>学生成绩(学号，学期，课程名称，成绩，任课老师)</p>
+<h3 id="3-2-数据类型定义"><a href="#3-2-数据类型定义" class="headerlink" title="3.2 数据类型定义"></a>3.2 数据类型定义</h3><p>学生(学号 文本、姓名 文本、性别 文本、年龄 数字、生源所在地 文本、已修学分 数字)<br>课程(课程编号 文本、课程名称 文本、任课教师 文本、开课学期 文本、学时 数字、考试或考查 文本、学分 数字、班级号 文本)<br>教师(教师编号 文本、姓名 文本、性别 文本、年龄 数字、职称 文本、联系电话 文本)<br>学生成绩(学号 文本，学期 文本，课程名称 文本，成绩 数字，任课老师编号 文本)</p>
+<h3 id="3-3-关系模式的优化"><a href="#3-3-关系模式的优化" class="headerlink" title="3.3 关系模式的优化"></a>3.3 关系模式的优化</h3><p>每个表中增加外键递归删除和默认值以及非空的约束条件<br>create table zhangbingyang_students(zby_sno text primary key, zby_sname text not null, zby_ssex text check(zby_ssex=’男’ or zby_ssex=’女’),zby_address text,zby_value smallint check(zby_value &gt;= 0) default 0);<br>create table zhangbingyang_teachers(zby_tno text primary key, zby_tname text not null, zby_tsex text check(zby_tsex=’男’ or zby_tsex=’女’),zby_tage smallint check(zby_tage &gt; 0), zby_position text, zby_phone text unique);<br>create table zhangbingyang_courses(zby_cno text , zby_name text, zby_tno text references zhangbingyang_teachers(zby_tno) on delete cascade, zby_term text not null, zby_time smallint check(zby_time &gt;= 0), zby_exam text check(zby_exam = ‘考试’ or zby_exam = ‘考查’), zby_csno text not null,zby_value smallint check(zby_value &gt; 0), primary key(zny,cno, zby_tno), unique(zby_cno, zby_tno, zby_csno));<br>create table zhangbingyang_reports(zby_sno text references zhangbingyang_students(zby_sno) on delete cascade, zby_term text ,zby_cno text references zhangbingyang_courses(zby_cno) on delete cascade, zby_score smallint check(zby_score  &gt;= 0), zby_tno text references zhangbingyang_teachers(zby_tno) on delete cascade, zby_zsno text, primary key (zby_sno,zby_cno,zby_term, zby_score),foreign key (zby_cno, zby_tno, zby_csno) references zhangbingyang_courses(zby_cno, zby_tno, zby_csno) on delete cascade);</p>
+<h2 id="4-物理结构设计"><a href="#4-物理结构设计" class="headerlink" title="4 物理结构设计"></a>4 物理结构设计</h2><p>图 5数据库的物理设计</p>
+<h3 id="4-1-聚簇设计"><a href="#4-1-聚簇设计" class="headerlink" title="4.1 聚簇设计"></a>4.1 聚簇设计</h3><p>聚簇索引，实际存储的循序结构与数据存储的物理机构是一致的，所以通常来说物理顺序结构只有一种，那么一个表的聚簇索引也只能有一个，通常默认都是主键，设置了主键，系统默认就为你加上了聚簇索引。</p>
+<h3 id="4-2-索引设计"><a href="#4-2-索引设计" class="headerlink" title="4.2 索引设计"></a>4.2 索引设计</h3><p>学生(学号)<br>课程(课程编号)<br>教师(教师编号)<br>学生成绩(学号，课程名称，任课老师编号)</p>
+<h3 id="4-3-分区设计"><a href="#4-3-分区设计" class="headerlink" title="4.3 分区设计"></a>4.3 分区设计</h3><p>数据分区是一种物理数据库的设计技术，它的目的是为了在特定的SQL操作中减少数据读写的总量以缩减响应时间。分区并不是生成新的数据表，而是将表的数据均衡分摊到不同的硬盘，系统或是不同服务器存储介子中，实际上还是一张表。另外，分区可以做到将表的数据均衡到不同的地方，提高数据检索的效率，降低数据库的频繁IO压力值，分区的优点如下：</p>
+<ol>
+<li>相对于单个文件系统或是硬盘，分区可以存储更多的数据；</li>
+<li>数据管理比较方便，比如要清理或废弃某年的数据，就可以直接删除该日期的分区数据即可；</li>
+<li>精准定位分区查询数据，不需要全表扫描查询，大大提高数据检索效率；</li>
+<li>可跨多个分区磁盘查询，来提高查询的吞吐量；</li>
+<li>在涉及聚合函数查询时，可以很容易进行数据的合并；</li>
+</ol>
+<h2 id="5-数据库实施"><a href="#5-数据库实施" class="headerlink" title="5 数据库实施"></a>5 数据库实施</h2><h3 id="5-1-基本表建立"><a href="#5-1-基本表建立" class="headerlink" title="5.1 基本表建立"></a>5.1 基本表建立</h3><h3 id="5-2-索引的建立"><a href="#5-2-索引的建立" class="headerlink" title="5.2 索引的建立"></a>5.2 索引的建立</h3><h3 id="5-3-触发器建立"><a href="#5-3-触发器建立" class="headerlink" title="5.3 触发器建立"></a>5.3 触发器建立</h3><p>create trigger autoupdate_value after insert on zhangbingyang_reports FOR EACH ROW EXECUTE PROCEDURE update_value();</p>
+<h3 id="5-4-存储过程建立"><a href="#5-4-存储过程建立" class="headerlink" title="5.4 存储过程建立"></a>5.4 存储过程建立</h3><p>create or replace function update_value() returns trigger as $example_table$<br>    begin<br>        update zhangbingyang_students set zby_value = zby_value + (select zby_value from zhangbingyang_courses where zby_cno = new.zby_cno)<br>        where zby_sno = new.zby_sno;<br>        raise notice ‘done %’, new.zby_sno;<br>        return null;<br>    end;<br>$example_table$ LANGUAGE plpgsql;</p>
+<h2 id="6-应用系统开发与试运行"><a href="#6-应用系统开发与试运行" class="headerlink" title="6 应用系统开发与试运行"></a>6 应用系统开发与试运行</h2><h3 id="6-1-开发平台和开发环境介绍"><a href="#6-1-开发平台和开发环境介绍" class="headerlink" title="6.1 开发平台和开发环境介绍"></a>6.1 开发平台和开发环境介绍</h3><p>操作系统环境:Windows 10 x86_64专业版<br>开发语言:Java<br>开发IDE: IntelliJ IDEA Community Edition 2020.1.1 x64</p>
+<h3 id="6-2-系统功能图"><a href="#6-2-系统功能图" class="headerlink" title="6.2 系统功能图"></a>6.2 系统功能图</h3><p>系统存在命令行和图形界面两种运行方式。命令行中未增加参数则调用图形界面，反之则为终端输出。</p>
+<h4 id="6-2-1-图形界面和逻辑分离"><a href="#6-2-1-图形界面和逻辑分离" class="headerlink" title="6.2.1 图形界面和逻辑分离"></a>6.2.1 图形界面和逻辑分离</h4><p>图形界面类Design,由图形界面函数实现图形界面的布局，主类Psqlbase继承图形界面类，构造函数中实现按键功能。二者分离有效增加程序模块化，便于将来维护与和运行。</p>
+<h4 id="6-2-2-命令行和图形界面共存"><a href="#6-2-2-命令行和图形界面共存" class="headerlink" title="6.2.2 命令行和图形界面共存"></a>6.2.2 命令行和图形界面共存</h4><p>为了增加运行效率，该程序增加了命令行操作方法，实现命令行和图形界面共用。图形界面主要容器borderlayout布局，占据north和center部分，north的panel使用流布局，方便图形界面伸缩式保持所有部件可视化。<br>学生成绩按每学年成绩统计<br>终端输出：</p>
+<p>图形界面：</p>
+<p>学生成绩名次排定<br>终端输出：</p>
+<p>图形界面：</p>
+<p> 每门课程平均成绩统计<br>终端输出：</p>
+<p>图形界面：</p>
+<p> 学生所学课程及学分统计<br>终端输出：</p>
+<p>图形界面：</p>
+<p> 对每个学生输入成绩的时候，自动生成学生的已修学分总数<br> 学生成绩查询</p>
+<p>图形界面：</p>
+<p> 教师任课查询<br>终端输出：</p>
+<p>图形界面：</p>
+<p> 班级课程开设查询<br> 图形界面：</p>
+<h2 id="7-实验总结"><a href="#7-实验总结" class="headerlink" title="7 实验总结"></a>7 实验总结</h2><h3 id="7-1-遇到的问题和解决的办法"><a href="#7-1-遇到的问题和解决的办法" class="headerlink" title="7.1 遇到的问题和解决的办法"></a>7.1 遇到的问题和解决的办法</h3><pre><code>1. Java中存在乱码</code></pre>
+<p>解决方法：<br>(1)替换成英文字符<br>(2)修改java的配置，使用utf-8编码<br>(3)gradle build.gradle中增加编译中utf-8的配置(花费将近5天时间排查)</p>
+<h3 id="2-sql语句查询的结果存在空值会报错"><a href="#2-sql语句查询的结果存在空值会报错" class="headerlink" title="2.sql语句查询的结果存在空值会报错"></a>2.sql语句查询的结果存在空值会报错</h3><p>增加表的约束，拒绝空值，同时增加默认值</p>
+<h3 id="7-2-系统设计的不足"><a href="#7-2-系统设计的不足" class="headerlink" title="7.2 系统设计的不足"></a>7.2 系统设计的不足</h3><p>Java字符乱码未得到完美的解决，终端输出中还是存在小部分乱码</p>
+
       
 
       
@@ -290,7 +362,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">数据库管理课程设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">1.需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E9%9C%80%E6%B1%82%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 数据需求描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%80%A7%E8%83%BD%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.3 性能需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.4 数据字典</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8"><span class="toc-number">1.2.</span> <span class="toc-text">8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">2 概念结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%B1%80%E9%83%A8E-R%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 局部E-R图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%A8%E5%B1%80E-R%E5%9B%BE"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 全局E-R图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E5%85%A8%E5%B1%80E-R%E5%9B%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 优化后的全局E-R图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">3 逻辑结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 关系模式设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 数据类型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 关系模式的优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">4 物理结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%81%9A%E7%B0%87%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 聚簇设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.2.</span> <span class="toc-text">4.2 索引设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%88%86%E5%8C%BA%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.</span> <span class="toc-text">4.3 分区设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%96%BD"><span class="toc-number">1.6.</span> <span class="toc-text">5 数据库实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%9F%BA%E6%9C%AC%E8%A1%A8%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 基本表建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 索引的建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E8%A7%A6%E5%8F%91%E5%99%A8%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.6.3.</span> <span class="toc-text">5.3 触发器建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.6.4.</span> <span class="toc-text">5.4 存储过程建立</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="toc-number">1.7.</span> <span class="toc-text">6 应用系统开发与试运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0%E5%92%8C%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.7.1.</span> <span class="toc-text">6.1 开发平台和开发环境介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E5%9B%BE"><span class="toc-number">1.7.2.</span> <span class="toc-text">6.2 系统功能图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%92%8C%E9%80%BB%E8%BE%91%E5%88%86%E7%A6%BB"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">6.2.1 图形界面和逻辑分离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%85%B1%E5%AD%98"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">6.2.2 命令行和图形界面共存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">7 实验总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="toc-number">1.8.1.</span> <span class="toc-text">7.1 遇到的问题和解决的办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E5%AD%98%E5%9C%A8%E7%A9%BA%E5%80%BC%E4%BC%9A%E6%8A%A5%E9%94%99"><span class="toc-number">1.8.2.</span> <span class="toc-text">2.sql语句查询的结果存在空值会报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%B8%8D%E8%B6%B3"><span class="toc-number">1.8.3.</span> <span class="toc-text">7.2 系统设计的不足</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
