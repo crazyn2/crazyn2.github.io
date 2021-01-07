@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Postgresql-Design | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析1.1 数据需求描述(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用">
+  <meta name="description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Postgresql-Design">
 <meta property="og:url" content="http://example.com/2021/01/06/Postgresql-Design/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析1.1 数据需求描述(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用">
+<meta property="og:description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 1.需求分析">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-06T07:24:16.000Z">
-<meta property="article:modified_time" content="2021-01-07T03:04:29.814Z">
+<meta property="article:modified_time" content="2021-01-07T03:05:48.014Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -167,7 +167,8 @@
 <p>数据库: Postgresql</p>
 <p>编程语言: Java</p>
 <p>架构：Postgresql数据库+Java调用+图形界面</p>
-<h2 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1.需求分析"></a>1.需求分析</h2><h3 id="1-1-数据需求描述"><a href="#1-1-数据需求描述" class="headerlink" title="1.1 数据需求描述"></a>1.1 数据需求描述</h3><p>(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用于统计某一地区的学生数；<br>(2)课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分等数据项，课程根据班级开设。<br>(3)教师信息至少需要包含教师编号、姓名、性别、年龄、职称、联系电话<br>等数据项；<br>(4)学生成绩至少需要学号，学期，课程名称，成绩，任课老师等数据项；<br>###1.2 系统功能需求<br>学生成绩按每学年成绩统计 <br>学生成绩名次排定 <br>每门课程平均成绩统计 <br>学生所学课程及学分统计 <br>对每个学生输入成绩的时候，自动生成学生的已修学分总数 <br>学生成绩查询 <br>教师任课查询 <br>班级课程开设查询</p>
+<h2 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1.需求分析"></a>1.需求分析</h2><a id="more"></a>
+<h3 id="1-1-数据需求描述"><a href="#1-1-数据需求描述" class="headerlink" title="1.1 数据需求描述"></a>1.1 数据需求描述</h3><p>(1)学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用于统计某一地区的学生数；<br>(2)课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分等数据项，课程根据班级开设。<br>(3)教师信息至少需要包含教师编号、姓名、性别、年龄、职称、联系电话<br>等数据项；<br>(4)学生成绩至少需要学号，学期，课程名称，成绩，任课老师等数据项；<br>###1.2 系统功能需求<br>学生成绩按每学年成绩统计 <br>学生成绩名次排定 <br>每门课程平均成绩统计 <br>学生所学课程及学分统计 <br>对每个学生输入成绩的时候，自动生成学生的已修学分总数 <br>学生成绩查询 <br>教师任课查询 <br>班级课程开设查询</p>
 <h3 id="1-3-性能需求"><a href="#1-3-性能需求" class="headerlink" title="1.3 性能需求"></a>1.3 性能需求</h3><h3 id="1-4-数据字典"><a href="#1-4-数据字典" class="headerlink" title="1.4 数据字典"></a>1.4 数据字典</h3><ul>
 <li>数据字典的用途：进行详细的数据收集和数据分析所获得的主要结果</li>
 <li>数据字典的内容<ul>
