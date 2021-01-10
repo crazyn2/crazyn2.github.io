@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>p2p分发文件搭建测试 | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="p2p分发文件搭建测试目录">
+  <meta name="description" content="p2p分发文件搭建测试目录   实验条件： 硬件设备: 软件：   1.qbittoren制作种子torrent文件 2.搭建tracker服务器 windows server 2008(公网ip) ubunut20.04(内网ip)   解决内网种子用户无法上传文件方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="p2p分发文件搭建测试">
 <meta property="og:url" content="http://example.com/2020/12/21/p2p-build/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="p2p分发文件搭建测试目录">
+<meta property="og:description" content="p2p分发文件搭建测试目录   实验条件： 硬件设备: 软件：   1.qbittoren制作种子torrent文件 2.搭建tracker服务器 windows server 2008(公网ip) ubunut20.04(内网ip)   解决内网种子用户无法上传文件方案">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/qbittorrent.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/seed.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/stat.png">
 <meta property="og:image" content="http://example.com/2020/12/21/p2p-build/output.png">
 <meta property="article:published_time" content="2020-12-21T13:39:59.000Z">
-<meta property="article:modified_time" content="2021-01-10T08:15:10.840Z">
+<meta property="article:modified_time" content="2021-01-10T09:06:14.959Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -172,16 +172,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="p2p分发文件搭建测试"><a href="#p2p分发文件搭建测试" class="headerlink" title="p2p分发文件搭建测试"></a>p2p分发文件搭建测试</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><a id="more"></a>
+        <h1><span id="p2p分发文件搭建测试">p2p分发文件搭建测试</span></h1><h2><span id="目录">目录</span></h2><!-- toc -->
 
+<ul>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E6%9D%A1%E4%BB%B6">实验条件：</a><ul>
+<li><a href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87">硬件设备:</a></li>
+<li><a href="#%E8%BD%AF%E4%BB%B6">软件：</a></li>
+</ul>
+</li>
+<li><a href="#1qbittoren%E5%88%B6%E4%BD%9C%E7%A7%8D%E5%AD%90torrent%E6%96%87%E4%BB%B6">1.qbittoren制作种子torrent文件</a></li>
+<li><a href="#2%E6%90%AD%E5%BB%BAtracker%E6%9C%8D%E5%8A%A1%E5%99%A8">2.搭建tracker服务器</a><ul>
+<li><a href="#windows-server-2008%E5%85%AC%E7%BD%91ip">windows server 2008(公网ip)</a></li>
+<li><a href="#ubunut2004%E5%86%85%E7%BD%91ip">ubunut20.04(内网ip)</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E5%86%85%E7%BD%91%E7%A7%8D%E5%AD%90%E7%94%A8%E6%88%B7%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%96%B9%E6%A1%88">解决内网种子用户无法上传文件方案</a></li>
+</ul>
+<!-- tocstop -->
 
-<h3 id="实验条件："><a href="#实验条件：" class="headerlink" title="实验条件："></a>实验条件：</h3><h4 id="硬件设备"><a href="#硬件设备" class="headerlink" title="硬件设备:"></a>硬件设备:</h4><p>公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替)</p>
-<h4 id="软件："><a href="#软件：" class="headerlink" title="软件："></a>软件：</h4><p>客户端:</p>
+<a id="more"></a>
+<h3><span id="实验条件">实验条件：</span></h3><h4><span id="硬件设备">硬件设备:</span></h4><p>公网ip的tracker服务器,两台客户端机器(可以使用虚拟机代替)</p>
+<h4><span id="软件">软件：</span></h4><p>客户端:</p>
 <p><a target="_blank" rel="noopener" href="https://www.qbittorrent.org/download.php">qBittorrent</a>(不建议使用热门代理服务器访问网页，会被禁止访问)</p>
 <p>tracker服务器软件:<br><a target="_blank" rel="noopener" href="https://github.com/webtorrent/bittorrent-tracker" title="bittorrent-tracker">bittorrent-tracker</a>(本次测试用于Ubuntu20.04LTS x86_64)</p>
 <p><a target="_blank" rel="noopener" href="https://www.bitcomet.com/cn/tools/tracker" title="BitComet Tracker">BitComet Tracker</a>(本次测试用于windows server 2008 x86_64)</p>
 <p>qBittorrent的高级选中打开内置tracker端口</p>
-<h3 id="1-qbittoren制作种子torrent文件"><a href="#1-qbittoren制作种子torrent文件" class="headerlink" title="1.qbittoren制作种子torrent文件"></a>1.qbittoren制作种子torrent文件</h3><p>注意：</p>
+<h3><span id="1qbittoren制作种子torrent文件">1.qbittoren制作种子torrent文件</span></h3><p>注意：</p>
 <p>种子客户端即上传宿主机必须是公网ip，否则无法上传文件，初步判定为nat技术缺陷，软件无法解决。</p>
 <p>步骤:</p>
 <ol>
@@ -192,12 +208,12 @@
 <li><p>选择文件或者选择文件夹后，选择完成后开始做种，否则需要手动做种，手动做种需要添加相应的torrent文件，如何对应的位置不存在文件，则会重新下载文件。添加tracker服务的链接，图片中的链接是内网中测试时搭建的。</p>
 </li>
 <li><p>成功做种会生成torrent文件，同时在下载项显示做种<br><img src="/2020/12/21/p2p-build/show.png"></p>
-<h3 id="2-搭建tracker服务器"><a href="#2-搭建tracker服务器" class="headerlink" title="2.搭建tracker服务器"></a>2.搭建tracker服务器</h3><p>BitComet Tracker是免费许可软件，不开源，最后一次更新是2007年，比较适合于老版本的服务器，比如windows server 2008。</p>
+<h3><span id="2搭建tracker服务器">2.搭建tracker服务器</span></h3><p>BitComet Tracker是免费许可软件，不开源，最后一次更新是2007年，比较适合于老版本的服务器，比如windows server 2008。</p>
 </li>
 </ol>
 <p>bittorrent-tracker是开源免费软件，要求nodejs版本&gt;=10(windows server 2008无法安装高版本的nodejs), 版本过低，能运行但是会出现错误。比较适用于新版本的系统，而且能进行二次开发，优先推荐</p>
-<h4 id="windows-server-2008-公网ip"><a href="#windows-server-2008-公网ip" class="headerlink" title="windows server 2008(公网ip)"></a>windows server 2008(公网ip)</h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="/2020/12/21/p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="/2020/12/21/p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="/2020/12/21/p2p-build/config.png"><br><img src="/2020/12/21/p2p-build/stat.png"><br>配置windows防火墙，允许外部访问8080端口，防火墙高级选项中添加8080端口入站规则。本人出于测试方便直接关闭防火墙。<br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
-<h4 id="ubunut20-04-内网ip"><a href="#ubunut20-04-内网ip" class="headerlink" title="ubunut20.04(内网ip)"></a>ubunut20.04(内网ip)</h4><p>安装npm</p>
+<h4><span id="windows-server-2008公网ip">windows server 2008(公网ip)</span></h4><p>从官方上下载zip文件后，上传到服务器并解压, 双击BitCometTracker.exe，弹出下框<br><img src="/2020/12/21/p2p-build/bitcomet.png"><br>打开软件之后，状态是停止的的状态，需要点击”run”<br><img src="/2020/12/21/p2p-build/start.png"><br>这样就行了，如果需要修改配置端口，需要点击“config”<br><img src="/2020/12/21/p2p-build/config.png"><br><img src="/2020/12/21/p2p-build/stat.png"><br>配置windows防火墙，允许外部访问8080端口，防火墙高级选项中添加8080端口入站规则。本人出于测试方便直接关闭防火墙。<br>tracker链接：<a target="_blank" rel="noopener" href="http://ip地址:8080/announce">http://ip地址:8080/announce</a></p>
+<h4><span id="ubunut2004内网ip">ubunut20.04(内网ip)</span></h4><p>安装npm</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp;&amp; sudo apt install npm -y</span><br></pre></td></tr></table></figure>
 <p>安装bittorrent-tracker</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br><span class="line">npm install -g bittorrent-tracker</span><br></pre></td></tr></table></figure>
@@ -209,7 +225,7 @@
 <p>本人出于测试方便直接关闭防火墙。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="解决内网种子用户无法上传文件方案"><a href="#解决内网种子用户无法上传文件方案" class="headerlink" title="解决内网种子用户无法上传文件方案"></a>解决内网种子用户无法上传文件方案</h3><p>(本人尚未完全进行测试，纯属理论构想)</p>
+<h3><span id="解决内网种子用户无法上传文件方案">解决内网种子用户无法上传文件方案</span></h3><p>(本人尚未完全进行测试，纯属理论构想)</p>
 <p>方案一:可考虑使用openvpn搭建虚拟局域网,类似于内网传输文件，使用bt进一步增加匿名性,理论上完全可行</p>
 <p>优点：节省服务器的磁盘空间</p>
 <p>缺点：受制于公网服务器带宽，使用中间服务器转发即可实现相同效果。</p>
@@ -353,7 +369,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#p2p%E5%88%86%E5%8F%91%E6%96%87%E4%BB%B6%E6%90%AD%E5%BB%BA%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">p2p分发文件搭建测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%9D%A1%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">实验条件：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">硬件设备:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">软件：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-qbittoren%E5%88%B6%E4%BD%9C%E7%A7%8D%E5%AD%90torrent%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.qbittoren制作种子torrent文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%90%AD%E5%BB%BAtracker%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">2.搭建tracker服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows-server-2008-%E5%85%AC%E7%BD%91ip"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">windows server 2008(公网ip)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ubunut20-04-%E5%86%85%E7%BD%91ip"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">ubunut20.04(内网ip)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%86%85%E7%BD%91%E7%A7%8D%E5%AD%90%E7%94%A8%E6%88%B7%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.4.</span> <span class="toc-text">解决内网种子用户无法上传文件方案</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">p2p分发文件搭建测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.1.</span> <span class="toc-text">实验条件：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">硬件设备:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">软件：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.qbittoren制作种子torrent文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.3.</span> <span class="toc-text">2.搭建tracker服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">windows server 2008(公网ip)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">ubunut20.04(内网ip)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.4.</span> <span class="toc-text">解决内网种子用户无法上传文件方案</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

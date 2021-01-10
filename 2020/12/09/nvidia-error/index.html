@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>nvidia驱动出现故障崩溃解决方案 | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nvidia驱动出现故障崩溃12ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.0.crash&#39;">
+  <meta name="description" content="nvidia驱动出现故障崩溃12ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.0.crash&#39; 目录   解决方法 原因分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nvidia驱动出现故障崩溃解决方案">
 <meta property="og:url" content="http://example.com/2020/12/09/nvidia-error/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="nvidia驱动出现故障崩溃12ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.0.crash&#39;">
+<meta property="og:description" content="nvidia驱动出现故障崩溃12ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.0.crash&#39; 目录   解决方法 原因分析">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/2020/12/09/nvidia-error/application.png">
 <meta property="article:published_time" content="2020-12-09T04:13:47.000Z">
-<meta property="article:modified_time" content="2021-01-07T10:23:08.987Z">
+<meta property="article:modified_time" content="2021-01-10T09:07:59.079Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -165,13 +165,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="nvidia驱动出现故障崩溃"><a href="#nvidia驱动出现故障崩溃" class="headerlink" title="nvidia驱动出现故障崩溃"></a>nvidia驱动出现故障崩溃</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.</span><br><span class="line">0.crash&#39;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+        <h1><span id="nvidia驱动出现故障崩溃">nvidia驱动出现故障崩溃</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Cannot create report: [Errno 17] File exists: &#39;&#x2F;var&#x2F;crash&#x2F;nvidia-kernel-source-455.</span><br><span class="line">0.crash&#39;</span><br></pre></td></tr></table></figure>
+<h2><span id="目录">目录</span></h2><!-- toc -->
 
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a></li>
+<li><a href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90">原因分析</a></li>
+</ul>
+<!-- tocstop -->
+
+<a id="more"></a>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Error! Bad <span class="built_in">return</span> status <span class="keyword">for</span> module build on kernel: 5.4.0-56-generic (x86_64)</span><br><span class="line">Consult /var/lib/dkms/nvidia/455.38/build/make.log <span class="keyword">for</span> more information.</span><br><span class="line">dpkg: error processing package nvidia-dkms-455 (--configure):</span><br><span class="line"> installed nvidia-dkms-455 package post-installation script subprocess returned error <span class="built_in">exit</span></span><br><span class="line"> status 10</span><br><span class="line">dpkg: dependency problems prevent configuration of nvidia-driver-455:</span><br><span class="line"> nvidia-driver-455 depends on nvidia-dkms-455 (&lt;= 455.38-1); however:</span><br><span class="line">  Package nvidia-dkms-455 is not configured yet.</span><br><span class="line"> nvidia-driver-455 depends on nvidia-dkms-455 (&gt;= 455.38); however:</span><br><span class="line">  Package nvidia-dkms-455 is not configured yet.</span><br><span class="line"></span><br><span class="line">dpkg: error processing package nvidia-driver-455 (--configure):</span><br><span class="line"> dependency problems - leaving unconfigured</span><br><span class="line">No apport report written because the error message indicates its a followup error from a p</span><br><span class="line">revious failure.</span><br><span class="line">                Processing triggers <span class="keyword">for</span> initramfs-tools (0.136ubuntu6.3) ...</span><br><span class="line">update-initramfs: Generating /boot/initrd.img-5.4.0-56-generic</span><br><span class="line">Errors were encountered <span class="keyword">while</span> processing:</span><br><span class="line"> nvidia-dkms-455</span><br><span class="line"> nvidia-driver-455</span><br><span class="line">E: Sub-process /usr/bin/dpkg returned an error code (1)</span><br></pre></td></tr></table></figure>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;gcc gcc &#x2F;usr&#x2F;bin&#x2F;gcc-7 100</span><br><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;gcc gcc &#x2F;usr&#x2F;bin&#x2F;gcc-9 50</span><br></pre></td></tr></table></figure>
+<h3><span id="解决方法">解决方法</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;gcc gcc &#x2F;usr&#x2F;bin&#x2F;gcc-7 100</span><br><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;gcc gcc &#x2F;usr&#x2F;bin&#x2F;gcc-9 50</span><br></pre></td></tr></table></figure>
 <p>在Software &amp; Updates中重新安装nvidia官方闭源驱动<br><img src="/2020/12/09/nvidia-error/application.png"><br>如果Software &amp; Updates图形界面中显示安装成功，但是nvidia-smi显示无法连接驱动，请关闭UEFI System中的Security boot选项，装机时会显示注册驱动到Security boot,但是这次并未跳出注册界面，所以只能禁用该选项，或者可以手动注册，但是本人目前没有这个精力去研究</p>
-<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>会出现nvidia驱动错误前，大多数是因为大家安装过cuda+cudnn降级了gcc,之后把gcc重新升级后，就会出现这样的错误。<br>推测原因：</p>
+<h3><span id="原因分析">原因分析</span></h3><p>会出现nvidia驱动错误前，大多数是因为大家安装过cuda+cudnn降级了gcc,之后把gcc重新升级后，就会出现这样的错误。<br>推测原因：</p>
 <ul>
 <li>1.cuda安装过程中改动了nvidia的依赖文件,必须使用降级后的gcc才能编译，同时nvidia驱动官方源基本都是远程下载，本地编译，所以需要本地编译器为降级后的gcc。解决方法如上所示，亲测有效。</li>
 <li>2.本人是在一段时间后才将gcc重新升级，当时并未马上出现该错误，在几次系统apt升级后，才发现该错误。apt升级中，曾给内核打过补丁，根据nvidia驱动本地编译推测，补丁也是本地编译后加入内核中。所以补丁应该也采用了降级后的gcc编译，而驱动程序升级后重新编译需要内核中的依赖项，结果二者编译器不兼容出现如上错误。可采取gcc不降级措施，或者降级后立刻重新升级，未亲测。</li>
@@ -312,7 +319,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nvidia%E9%A9%B1%E5%8A%A8%E5%87%BA%E7%8E%B0%E6%95%85%E9%9A%9C%E5%B4%A9%E6%BA%83"><span class="toc-number">1.</span> <span class="toc-text">nvidia驱动出现故障崩溃</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">原因分析</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">nvidia驱动出现故障崩溃</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.1.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.2.</span> <span class="toc-text">原因分析</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
