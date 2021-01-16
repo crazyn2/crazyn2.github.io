@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://crazyn2.github.io/2021/01/06/Postgresql-Design/</loc>
+    
+    <lastmod>2021-01-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://crazyn2.github.io/2020/12/17/asr-comparison/</loc>
     
     <lastmod>2021-01-16</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>https://crazyn2.github.io/2021/01/02/vsocde-tomcat/</loc>
-    
-    <lastmod>2021-01-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://crazyn2.github.io/2021/01/06/Postgresql-Design/</loc>
     
     <lastmod>2021-01-16</lastmod>
     
