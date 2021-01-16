@@ -9,16 +9,16 @@
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
   <title>HBase设计实验报告 | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HBase设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 目录[toc]    展示动画 实验设计架构 1. http协">
+  <meta name="description" content="HBase设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBase设计实验报告">
 <meta property="og:url" content="https://crazyn2.github.io/2021/01/06/HBase-Design/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="HBase设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 目录[toc]    展示动画 实验设计架构 1. http协">
+<meta property="og:description" content="HBase设计实验报告实验环境: Docker容器集群(ctazyn&#x2F;hadoop-hbase),hadoop-3.2,HBase-1.4 实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器 开发IDE: VsCode+Docker插件+Java Extension Pack插件 辅助工具: Maven 目录">
 <meta property="og:locale">
 <meta property="og:image" content="https://crazyn2.github.io/2021/01/06/HBase-Design/hbase_show.gif">
 <meta property="article:published_time" content="2021-01-06T07:21:46.000Z">
-<meta property="article:modified_time" content="2021-01-14T06:37:03.362Z">
+<meta property="article:modified_time" content="2021-01-16T05:38:23.158Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -170,7 +170,8 @@
 <p>实验机器: Ubuntu20.04 x86_64 内存8GB 八核英特尔i7处理器</p>
 <p>开发IDE: VsCode+Docker插件+Java Extension Pack插件</p>
 <p>辅助工具: Maven</p>
-<h2><span id="目录">目录</span></h2><p>[toc]</p>
+<h2><span id="目录">目录</span></h2><a id="more"></a>
+
 <!-- toc -->
 
 <ul>
@@ -222,7 +223,6 @@
 </ul>
 <!-- tocstop -->
 
-<a id="more"></a>
 <h2><span id="展示动画">展示动画</span></h2><p><img src="/2021/01/06/HBase-Design/hbase_show.gif"></p>
 <h2><span id="实验设计架构">实验设计架构</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a><br>HBase是基于hadoop生态系统zookeeper和hdfs分布式文件系统的分布式数据库系统，遵循CAP理论，即。HBase为Nosql数据库，本身不支持Sql操作，需要调用HBase的api接口实现insert,replace,delete,update</p>
 <h3><span id="1-http协议传输前后端信息">1. http协议传输前后端信息</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
