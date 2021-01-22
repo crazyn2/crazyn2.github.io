@@ -17,7 +17,7 @@
 <meta property="og:description" content="服务器和客户端实现文件断点续传开发语言：Python3.8.6 服务器: Flask框架 客户端: requests库 目录">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-22T12:47:34.000Z">
-<meta property="article:modified_time" content="2021-01-22T14:07:08.932Z">
+<meta property="article:modified_time" content="2021-01-22T14:36:02.149Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -207,12 +207,28 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">header = &#123;</span><br><span class="line">        <span class="string">&quot;Range&quot;</span>: <span class="string">&quot;bytes=%d-&quot;</span> % temp_size </span><br><span class="line">        <span class="comment"># temp_size为当前已下载部分文件大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3><span id="requests切分下载大文件">requests切分下载大文件</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">file_download = requests.get(url,stream=<span class="literal">True</span>, headers=header)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤掉不成功的响应，否则也会追加到文件中，污染数据</span></span><br><span class="line"><span class="comment"># 以下响应代码均为实际测试中得到</span></span><br><span class="line"><span class="keyword">if</span> file_download.status_code != <span class="number">200</span> <span class="keyword">and</span> file_download.status_code != <span class="number">206</span>:</span><br><span class="line">    print(<span class="string">&quot;status error %s&quot;</span> % file_download.status_code)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">if</span> file_download.status_code == <span class="number">416</span>:</span><br><span class="line">    print(<span class="string">&quot;file has been existed&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="comment"># 设置进度条中长度，依据个人情况而定</span></span><br><span class="line">show_size = <span class="number">50</span></span><br><span class="line"><span class="comment"># 每次file_download迭代器调用中会下载chunk_size大小的数据流，单位是B，不是网络传输中的bit</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> file_download.iter_content(chunk_size=<span class="number">1024</span>):</span><br><span class="line">    <span class="keyword">if</span> chunk:</span><br><span class="line">        temp_size += <span class="built_in">len</span>(chunk)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(save_file, <span class="string">&quot;ab&quot;</span>) <span class="keyword">as</span> output:</span><br><span class="line">            output.write(chunk)</span><br><span class="line">            output.flush()</span><br><span class="line">        done = temp_size/total_size*<span class="number">100</span></span><br><span class="line"></span><br><span class="line">        done_size = temp_size/total_size*show_size</span><br><span class="line">        left = show_size - <span class="built_in">int</span>(done_size)</span><br><span class="line">        <span class="comment"># 显示进度条和下载比重</span></span><br><span class="line">        print(<span class="string">&quot;\r[%s%s]%.2f%%&quot;</span>% (<span class="built_in">int</span>(done_size)*<span class="string">&quot;#&quot;</span>, left*<span class="string">&quot;@&quot;</span>, done), end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<div id="flowchart-0" class="flow-chart"></div>
+
+
 <h2><span id="安全性">安全性</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
 <p>Flask框架的目标是微服务，最好是部署在内网中，如果部署在公网上，开发者需要考虑到服务的安全性。本人部署在公网的Flask服务器三个小时就遭到四次攻击。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">***.***.20.30 - - [22/Jan/2021 20:24:50] <span class="string">&quot;?[33mGET / HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.174.155 - - [22/Jan/2021 20:27:44] <span class="string">&quot;?[33mGET /login HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.174.155 - - [22/Jan/2021 20:27:44] <span class="string">&quot;?[33mGET /manager/html HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.20.30 - - [22/Jan/2021 21:33:14] <span class="string">&quot;?[33mOPTIONS / HTTP/1.0?[0m&quot;</span> 404 -</span><br></pre></td></tr></table></figure>
 <p>运行在windows server系统中，flask终端输出日志存在部分乱码。这是一些针对服务管理网页的常规攻击，本人并未设置此类链接，攻击失败，被404拒绝请求。运气还是比较好的，严重的话会造成数据泄漏或服务器崩溃。</p>
 <blockquote>
-<p>参考博客:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nul1/p/9172068.html">https://www.cnblogs.com/nul1/p/9172068.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hunyxv/article/details/103031547">https://blog.csdn.net/hunyxv/article/details/103031547</a></p>
+<p>参考博客:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nul1/p/9172068.html">https://www.cnblogs.com/nul1/p/9172068.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hunyxv/article/details/103031547">https://blog.csdn.net/hunyxv/article/details/103031547</a><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
+op0=>operation: 发送请求
+op1=>operation: 获取文件总大小
+op2=>operation: 查看本地文件大小，无则大小为0
+op3=>operation: 发送头部添加Range字段的http请求
+op4=>operation: 输出错误响应码
+cond=>condition: 响应码正常(是或否?)
+op5=>operation: 迭代下载文件块，保存到本地文件
+io=>inputoutput: 输入输出框
+e=>end: 结束
+st->op0->op1->op2->op3->cond
+cond(no)->op4->e
+cond(yes)->op5->e</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 </blockquote>
 
       
