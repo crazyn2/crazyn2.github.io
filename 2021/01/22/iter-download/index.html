@@ -7,37 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="google-site-verification" content="Dr7PhtET7FnHncfcsd0RxbU5hYTIAOXLDTP5Pmu_qP4" />
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
-  <title>数据库管理设计 | crazyn的个人博客</title>
+  <title>iter_download | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 目录">
+  <meta name="description" content="服务器和客户端实现文件断点续传开发语言：Python3.8.6 服务器: Flask框架 客户端: requests库 目录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库管理设计">
-<meta property="og:url" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/index.html">
+<meta property="og:title" content="iter_download">
+<meta property="og:url" content="https://crazyn2.github.io/2021/01/22/iter-download/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="数据库管理课程设计实验平台: Window 10 x86_64 英特尔i7八核处理器 数据库: Postgresql 编程语言: Java 架构：Postgresql数据库+Java调用+图形界面 目录">
+<meta property="og:description" content="服务器和客户端实现文件断点续传开发语言：Python3.8.6 服务器: Flask框架 客户端: requests库 目录">
 <meta property="og:locale">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/framework.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/logic_design.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal1.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui1.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal2.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui2.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal3.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui3.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal4.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui4.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal5.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui5.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal6.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui6.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/terminal7.png">
-<meta property="og:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/gui7.png">
-<meta property="article:published_time" content="2021-01-06T07:24:16.000Z">
-<meta property="article:modified_time" content="2021-01-16T05:58:52.617Z">
+<meta property="article:published_time" content="2021-01-22T12:47:34.000Z">
+<meta property="article:modified_time" content="2021-01-22T13:51:08.679Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://crazyn2.github.io/2021/01/06/Postgresql-Design/framework.png">
   
     <link rel="alternative" href="/atom.xml" title="crazyn的个人博客" type="application/atom+xml">
   
@@ -161,527 +144,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Postgresql-Design" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iter-download" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据库管理设计
+      iter_download
     </h1>
   
 
         
-        <a href="/2021/01/06/Postgresql-Design/" class="archive-article-date">
-  	<time datetime="2021-01-06T07:24:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-06</time>
+        <a href="/2021/01/22/iter-download/" class="archive-article-date">
+  	<time datetime="2021-01-22T12:47:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1><span id="数据库管理课程设计">数据库管理课程设计</span></h1><p>实验平台: Window 10 x86_64 英特尔i7八核处理器</p>
-<p>数据库: Postgresql</p>
-<p>编程语言: Java</p>
-<p>架构：Postgresql数据库+Java调用+图形界面</p>
+        <h1><span id="服务器和客户端实现文件断点续传">服务器和客户端实现文件断点续传</span></h1><p>开发语言：Python3.8.6</p>
+<p>服务器: Flask框架</p>
+<p>客户端: requests库</p>
 <h2><span id="目录">目录</span></h2><a id="more"></a>
 
 <!-- toc -->
 
 <ul>
-<li><a href="#1%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90">1.需求分析</a><ul>
-<li><a href="#11-%E6%95%B0%E6%8D%AE%E9%9C%80%E6%B1%82%E6%8F%8F%E8%BF%B0">1.1 数据需求描述</a></li>
-<li><a href="#12-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82">1.2 系统功能需求</a></li>
-<li><a href="#13-%E6%80%A7%E8%83%BD%E9%9C%80%E6%B1%82">1.3 性能需求</a></li>
-<li><a href="#14-%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8">1.4 数据字典</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF">服务端</a><ul>
+<li><a href="#flask%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%E8%AE%BE%E7%BD%AE">Flask断点续传设置</a></li>
 </ul>
 </li>
-<li><a href="#2-%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1">2 概念结构设计</a><ul>
-<li><a href="#21-%E5%B1%80%E9%83%A8e-r%E5%9B%BE">2.1 局部E-R图</a></li>
-<li><a href="#22-%E5%85%A8%E5%B1%80e-r%E5%9B%BE">2.2 全局E-R图</a></li>
-<li><a href="#23-%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E5%85%A8%E5%B1%80e-r%E5%9B%BE">2.3 优化后的全局E-R图</a></li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a><ul>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E5%A4%B4%E6%96%87%E4%BB%B6">服务器响应头文件</a></li>
+<li><a href="#requests%E5%88%87%E5%88%86%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%96%87%E4%BB%B6">requests切分下载大文件</a></li>
 </ul>
 </li>
-<li><a href="#3-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1">3 逻辑结构设计</a><ul>
-<li><a href="#31-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1">3.1 关系模式设计</a></li>
-<li><a href="#32-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89">3.2 数据类型定义</a></li>
-<li><a href="#33-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8C%96">3.3 关系模式的优化</a></li>
-</ul>
-</li>
-<li><a href="#4-%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1">4 物理结构设计</a><ul>
-<li><a href="#41-%E8%81%9A%E7%B0%87%E8%AE%BE%E8%AE%A1">4.1 聚簇设计</a></li>
-<li><a href="#42-%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1">4.2 索引设计</a></li>
-<li><a href="#43-%E5%88%86%E5%8C%BA%E8%AE%BE%E8%AE%A1">4.3 分区设计</a></li>
-</ul>
-</li>
-<li><a href="#5-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%96%BD">5 数据库实施</a><ul>
-<li><a href="#51-%E5%9F%BA%E6%9C%AC%E8%A1%A8%E5%BB%BA%E7%AB%8B">5.1 基本表建立</a></li>
-<li><a href="#52-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BB%BA%E7%AB%8B">5.2 索引的建立</a></li>
-<li><a href="#53-%E8%A7%A6%E5%8F%91%E5%99%A8%E5%BB%BA%E7%AB%8B">5.3 触发器建立</a></li>
-<li><a href="#54-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%BB%BA%E7%AB%8B">5.4 存储过程建立</a></li>
-</ul>
-</li>
-<li><a href="#6-%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E8%AF%95%E8%BF%90%E8%A1%8C">6 应用系统开发与试运行</a><ul>
-<li><a href="#61-%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0%E5%92%8C%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D">6.1 开发平台和开发环境介绍</a></li>
-<li><a href="#62-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E5%9B%BE">6.2 系统功能图</a><ul>
-<li><a href="#621-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%92%8C%E9%80%BB%E8%BE%91%E5%88%86%E7%A6%BB">6.2.1 图形界面和逻辑分离</a></li>
-<li><a href="#622-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%85%B1%E5%AD%98">6.2.2 命令行和图形界面共存</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#7-%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93">7 实验总结</a><ul>
-<li><a href="#71-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E7%9A%84%E5%8A%9E%E6%B3%95">7.1 遇到的问题和解决的办法</a></li>
-<li><a href="#1-java%E4%B8%AD%E5%AD%98%E5%9C%A8%E4%B9%B1%E7%A0%81">1. Java中存在乱码</a></li>
-<li><a href="#2sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E5%AD%98%E5%9C%A8%E7%A9%BA%E5%80%BC%E4%BC%9A%E6%8A%A5%E9%94%99">2.sql语句查询的结果存在空值会报错</a></li>
-<li><a href="#72-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%B8%8D%E8%B6%B3">7.2 系统设计的不足</a></li>
-</ul>
-</li>
+<li><a href="#%E5%AE%89%E5%85%A8%E6%80%A7">安全性</a></li>
 </ul>
 <!-- tocstop -->
 
-<p><img src="/2021/01/06/Postgresql-Design/framework.png"></p>
-<h2><span id="1需求分析">1.需求分析</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="11-数据需求描述">1.1 数据需求描述</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<ol>
-<li>学校设置了各专业，在专业下开设班级，每个班级包含若干学生，学生 信息至少需要包含学号、姓名、性别、年龄、生源所在地、已修学分总数等数据 项；另外，需要有地区信息，用于统计某一地区的学生数； </li>
-<li>课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分等数据项，课程根据班级开设。 </li>
-<li>教师信息至少需要包含教师编号、姓名、性别、年龄、职称、联系电话<br>等数据项；</li>
-<li>学生成绩至少需要学号，学期，课程名称，成绩，任课老师等数据项；</li>
-</ol>
-<h3><span id="12-系统功能需求">1.2 系统功能需求</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<ol>
-<li>学生成绩按每学年成绩统计</li>
-<li>学生成绩名次排定</li>
-<li>每门课程平均成绩统计 </li>
-<li>学生所学课程及学分统计</li>
-<li>对每个学生输入成绩的时候，自动生成学生的已修学分总数</li>
-<li>学生成绩查询</li>
-<li>教师任课查询</li>
-<li>班级课程开设查询</li>
-</ol>
-<h3><span id="13-性能需求">1.3 性能需求</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="14-数据字典">1.4 数据字典</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
+<h2><span id="服务端">服务端</span></h2><h3><span id="flask断点续传设置">Flask断点续传设置</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_file</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    filename_or_fp,</span></span></span><br><span class="line"><span class="function"><span class="params">    mimetype=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    as_attachment=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    attachment_filename=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    add_etags=<span class="literal">True</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    cache_timeout=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    conditional=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    last_modified=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="function"><span class="params"></span>):</span></span><br></pre></td></tr></table></figure>
+<p>参数：</p>
 <ul>
-<li>数据字典的用途：进行详细的数据收集和数据分析所获得的主要结果</li>
-<li>数据字典的内容<ul>
-<li>数据项</li>
-<li>数据结构</li>
-<li>数据流</li>
-<li>数据存储</li>
-<li>处理过程</li>
+<li>filename_or_fp: 是一个文件描述符或文件绝对路径或相对路径。</li>
+<li>mimetype：文件类型 string，可不填；</li>
+<li>as_attachment: bool， 是否在 header 中添加 Content-Disposition 字段，比如 Content-Disposition: attachment; filename=anaconda3.tar.gz ，attachment 为以附件方式下载，filename 是下载时默认的文件名。</li>
+<li>attachment_filename： 下载时使用的文件名 string，若省略，则使用文件实际真实名称；</li>
+<li>add_etags：默认添加 etags，string；</li>
+<li>cache_timeout：缓存时间，单位秒，默认使用 config 中的 send_file_max_age_default；</li>
+<li>conditional：是否支持断点续传，bool；</li>
+<li>last_modified： 文件的最后修改时间，时间戳，不填的话使用文件实际真实的最后修改时间。<br>调用send_file时只需设置conditional=True即可实现服务器端文件断点续传<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> send_file,Flask</span><br><span class="line">app = Flask(__name__,static_url_path=<span class="string">&quot;/static&quot;</span>)</span><br><span class="line"><span class="comment"># 设置网站路由和响应函数</span></span><br><span class="line"><span class="meta">@app.route(&quot;/test&quot;, methods=[&quot;GET&quot;])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_iter</span>():</span></span><br><span class="line">    <span class="keyword">return</span> send_file(<span class="string">&quot;test.7z&quot;</span>, conditional=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2><span id="客户端">客户端</span></h2><a href="#%E7%9B%AE%E5%BD%95">返回目录</a><h3><span id="服务器响应头文件">服务器响应头文件</span></h3><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></li>
 </ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>数据项</th>
-<th>学号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>含义说明</td>
-<td>唯一标识每个学生</td>
-</tr>
-<tr>
-<td>别名</td>
-<td>学生编号</td>
-</tr>
-<tr>
-<td>类型</td>
-<td>字符型</td>
-</tr>
-<tr>
-<td>长度</td>
-<td>8</td>
-</tr>
-<tr>
-<td>取值范围</td>
-<td>00000000至99999999</td>
-</tr>
-<tr>
-<td>取值含义</td>
-<td>前两位标别该学生所在年级，后六位按顺序编号</td>
-</tr>
-<tr>
-<td>与其他数据项的逻辑关系</td>
-<td>学生等</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据结构</th>
-<th>学生</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>含义说明</td>
-<td>是学籍管理子系统的主体数据结构，定义了一个学生的有关信息</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>学号、姓名、性别、年龄、生源所在地、已修学分总数</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据结构</th>
-<th>课程</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>含义说明</td>
-<td>是学籍管理子系统的主体数据结构，定义了一个课程的有关信息</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>课程信息表至少需包含课程编号、课程名称、任课教师、开课学期、开课学时、考核方式(考试或考查)、学分、开设班级</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据结构</th>
-<th>教师</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>含义说明</td>
-<td>是学籍管理子系统的主体数据结构，定义了一个教师的有关信息</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>教师编号、姓名、性别、年龄、职称、联系电话</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据结构</th>
-<th>学生成绩</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>含义说明</td>
-<td>是学籍管理子系统的主体数据结构，定义了一个学生的有关信息</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>学号，学期，课程名称，成绩，任课老师</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>学生成绩按每学年成绩统计</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>学生成绩按每学年成绩统计</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>成绩</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>学年，学号，统计成绩</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>学生成绩名次排定</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>学生成绩名次排定</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>成绩</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>课程号，平均成绩</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>学生所学课程及学分统计</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>学生所学课程及学分统计</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>成绩</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>学号，统计成绩</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>学生成绩查询</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>学生成绩查询</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>成绩</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>学号，课程号，统计成绩</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>班级课程开设查询</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>班级课程开设查询</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>课程</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>课程号，课程名，班级号</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据流</th>
-<th>教师任课查询</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>教师任课查询</td>
-</tr>
-<tr>
-<td>数据流来源</td>
-<td>课程</td>
-</tr>
-<tr>
-<td>数据流去向</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>教师号，课程号，课程名</td>
-</tr>
-<tr>
-<td>平均流量</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>高峰期流量</td>
-<td>10000</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>数据存储</th>
-<th>学生个人信息表</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>记录学生的总学分</td>
-</tr>
-<tr>
-<td>流入数据流</td>
-<td>学生成绩</td>
-</tr>
-<tr>
-<td>流出数据流</td>
-<td>学生学分</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>总学分</td>
-</tr>
-<tr>
-<td>数据量</td>
-<td>每年3000张</td>
-</tr>
-<tr>
-<td>存取方式随机存取</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2><span id="2-概念结构设计">2 概念结构设计</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a><br><img src="/2021/01/06/Postgresql-Design/logic_design.png"><br>在需求分析的基础上，建立系统的E-R模型，即首先建立局部E-R图，然后合并局部E-R图，形成初步的全局E-R图，最后优化全局E-R图。理解概念结构设计是数据库应用系统设计和实现中的关键步骤，特别掌握冲突的处理方法。采用合适工具画，如ERWIN，office visio，Power Designer等。</p>
-<p>自底向上设计概念结构的步骤 </p>
-<ul>
-<li>第1步：抽象数据并设计局部视图</li>
-<li>第2步：集成局部视图，得到全局概念结构</li>
-</ul>
-<p>图 4自底向上设计概念结构的步骤</p>
-<h3><span id="21-局部e-r图">2.1 局部E-R图</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="22-全局e-r图">2.2 全局E-R图</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="23-优化后的全局e-r图">2.3 优化后的全局E-R图</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h2><span id="3-逻辑结构设计">3 逻辑结构设计</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>利用E-R模型到关系模式的转换方法，将E-R图转换为关系模式，并对关系模式进行优化，并根据数据字典和第三节的个性化要求，设计数据库中的基本表。</p>
-<p>掌握概念结构转换为某个具体DBMS支持的逻辑结构的方法，学会逻辑结构优化与规范化的矛盾折中技巧。</p>
-<h3><span id="31-关系模式设计">3.1 关系模式设计</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<ul>
-<li><p>学生(学号、姓名、性别、年龄、生源所在地、已修学分)</p>
-</li>
-<li><p>课程(课程编号、课程名称、任课教师、开课学期、学 时、考试或考查、学分、班级)</p>
-</li>
-<li><p>教师(教师编号、姓名、性别、年龄、职称、联系电话)</p>
-</li>
-<li><p>学生成绩(学号，学期，课程名称，成绩，任课老师)</p>
-<h3><span id="32-数据类型定义">3.2 数据类型定义</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-</li>
-</ul>
-<ul>
-<li>学生(学号 文本、姓名 文本、性别 文本、年龄 数字、生源所在地 文本、已修学分 数字)</li>
-<li>课程(课程编号 文本、课程名称 文本、任课教师 文本、开课学期 文本、学时 数字、考试或考查 文本、学分 数字、班级号 文本)</li>
-<li>教师(教师编号 文本、姓名 文本、性别 文本、年龄 数字、职称 文本、联系电话 文本)</li>
-<li>学生成绩(学号 文本，学期 文本，课程名称 文本，成绩 数字，任课老师编号 文本)</li>
-</ul>
-<h3><span id="33-关系模式的优化">3.3 关系模式的优化</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>每个表中增加外键递归删除和默认值以及非空的约束条件</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> zhangbingyang_students(zby_sno <span class="built_in">text</span> primary <span class="keyword">key</span>, zby_sname <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">null</span>, zby_ssex <span class="built_in">text</span> <span class="keyword">check</span>(zby_ssex=<span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> zby_ssex=<span class="string">&#x27;女&#x27;</span>),zby_address <span class="built_in">text</span>,zby_value <span class="built_in">smallint</span> <span class="keyword">check</span>(zby_value &gt;= <span class="number">0</span>) <span class="keyword">default</span> <span class="number">0</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> zhangbingyang_teachers(zby_tno <span class="built_in">text</span> primary <span class="keyword">key</span>, zby_tname <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">null</span>, zby_tsex <span class="built_in">text</span> <span class="keyword">check</span>(zby_tsex=<span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> zby_tsex=<span class="string">&#x27;女&#x27;</span>),zby_tage <span class="built_in">smallint</span> <span class="keyword">check</span>(zby_tage &gt; <span class="number">0</span>), zby_position <span class="built_in">text</span>, zby_phone <span class="built_in">text</span> <span class="keyword">unique</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> zhangbingyang_courses(zby_cno <span class="built_in">text</span> , zby_name <span class="built_in">text</span>, zby_tno <span class="built_in">text</span> <span class="keyword">references</span> zhangbingyang_teachers(zby_tno) <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>, zby_term <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">null</span>, zby_time <span class="built_in">smallint</span> <span class="keyword">check</span>(zby_time &gt;= <span class="number">0</span>), zby_exam <span class="built_in">text</span> <span class="keyword">check</span>(zby_exam = <span class="string">&#x27;考试&#x27;</span> <span class="keyword">or</span> zby_exam = <span class="string">&#x27;考查&#x27;</span>), zby_csno <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">null</span>,zby_value <span class="built_in">smallint</span> <span class="keyword">check</span>(zby_value &gt; <span class="number">0</span>), primary <span class="keyword">key</span>(zny,cno, zby_tno), <span class="keyword">unique</span>(zby_cno, zby_tno, zby_csno));</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> zhangbingyang_reports(zby_sno <span class="built_in">text</span> <span class="keyword">references</span> zhangbingyang_students(zby_sno) <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>, zby_term <span class="built_in">text</span> ,zby_cno <span class="built_in">text</span> <span class="keyword">references</span> zhangbingyang_courses(zby_cno) <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>, zby_score <span class="built_in">smallint</span> <span class="keyword">check</span>(zby_score  &gt;= <span class="number">0</span>), zby_tno <span class="built_in">text</span> <span class="keyword">references</span> zhangbingyang_teachers(zby_tno) <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>, zby_zsno <span class="built_in">text</span>, primary <span class="keyword">key</span> (zby_sno,zby_cno,zby_term, zby_score),<span class="keyword">foreign</span> <span class="keyword">key</span> (zby_cno, zby_tno, zby_csno) <span class="keyword">references</span> zhangbingyang_courses(zby_cno, zby_tno, zby_csno) <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>);</span><br></pre></td></tr></table></figure>
-<h2><span id="4-物理结构设计">4 物理结构设计</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>图 5数据库的物理设计</p>
-<h3><span id="41-聚簇设计">4.1 聚簇设计</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>聚簇索引，实际存储的循序结构与数据存储的物理机构是一致的，所以通常来说物理顺序结构只有一种，那么一个表的聚簇索引也只能有一个，通常默认都是主键，设置了主键，系统默认就为你加上了聚簇索引。</p>
-<h3><span id="42-索引设计">4.2 索引设计</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>学生(学号)<br>课程(课程编号)<br>教师(教师编号)<br>学生成绩(学号，课程名称，任课老师编号)</p>
-<h3><span id="43-分区设计">4.3 分区设计</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>数据分区是一种物理数据库的设计技术，它的目的是为了在特定的SQL操作中减少数据读写的总量以缩减响应时间。分区并不是生成新的数据表，而是将表的数据均衡分摊到不同的硬盘，系统或是不同服务器存储介子中，实际上还是一张表。另外，分区可以做到将表的数据均衡到不同的地方，提高数据检索的效率，降低数据库的频繁IO压力值，分区的优点如下：</p>
-<ol>
-<li>相对于单个文件系统或是硬盘，分区可以存储更多的数据；</li>
-<li>数据管理比较方便，比如要清理或废弃某年的数据，就可以直接删除该日期的分区数据即可；</li>
-<li>精准定位分区查询数据，不需要全表扫描查询，大大提高数据检索效率；</li>
-<li>可跨多个分区磁盘查询，来提高查询的吞吐量；</li>
-<li>在涉及聚合函数查询时，可以很容易进行数据的合并；</li>
-</ol>
-<h2><span id="5-数据库实施">5 数据库实施</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="51-基本表建立">5.1 基本表建立</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="52-索引的建立">5.2 索引的建立</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="53-触发器建立">5.3 触发器建立</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> autoupdate_value <span class="keyword">after</span> <span class="keyword">insert</span> <span class="keyword">on</span> zhangbingyang_reports <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">EXECUTE</span> <span class="keyword">PROCEDURE</span> update_value();</span><br></pre></td></tr></table></figure>
-<h3><span id="54-存储过程建立">5.4 存储过程建立</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> update_value() <span class="keyword">returns</span> <span class="keyword">trigger</span> <span class="keyword">as</span> $example_table$</span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		<span class="keyword">update</span> zhangbingyang_students <span class="keyword">set</span> zby_value = zby_value + (<span class="keyword">select</span> zby_value <span class="keyword">from</span> zhangbingyang_courses <span class="keyword">where</span> zby_cno = new.zby_cno) </span><br><span class="line">		<span class="keyword">where</span> zby_sno = new.zby_sno;</span><br><span class="line">		raise notice &#x27;done %&#x27;, new.zby_sno;</span><br><span class="line">		return null;</span><br><span class="line">	<span class="keyword">end</span>; </span><br><span class="line">$example_table$ LANGUAGE plpgsql;</span><br></pre></td></tr></table></figure>
-<h2><span id="6-应用系统开发与试运行">6 应用系统开发与试运行</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="61-开发平台和开发环境介绍">6.1 开发平台和开发环境介绍</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>操作系统环境:Windows 10 x86_64专业版<br>开发语言:Java<br>开发IDE: IntelliJ IDEA Community Edition 2020.1.1 x64</p>
-<h3><span id="62-系统功能图">6.2 系统功能图</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>系统存在命令行和图形界面两种运行方式。命令行中未增加参数则调用图形界面，反之则为终端输出。</p>
-<h4><span id="621-图形界面和逻辑分离">6.2.1 图形界面和逻辑分离</span></h4><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>图形界面类Design,由图形界面函数实现图形界面的布局，主类Psqlbase继承图形界面类，构造函数中实现按键功能。二者分离有效增加程序模块化，便于将来维护与和运行。</p>
-<h4><span id="622-命令行和图形界面共存">6.2.2 命令行和图形界面共存</span></h4><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>为了增加运行效率，该程序增加了命令行操作方法，实现命令行和图形界面共用。图形界面主要容器borderlayout布局，占据north和center部分，north的panel使用流布局，方便图形界面伸缩式保持所有部件可视化。<br>学生成绩按每学年成绩统计<br>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal1.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui1.png"></p>
-<p>学生成绩名次排定<br>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal2.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui2.png"></p>
-<p> 每门课程平均成绩统计<br>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal3.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui3.png"></p>
-<p>学生所学课程及学分统计<br>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal4.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui4.png"></p>
-<p>对每个学生输入成绩的时候，自动生成学生的已修学分总数<br>学生成绩查询<br><img src="/2021/01/06/Postgresql-Design/terminal5.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui5.png"></p>
-<p>教师任课查询</p>
-<p>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal6.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui6.png"></p>
-<p>班级课程开设查询</p>
-<p>终端输出：<br><img src="/2021/01/06/Postgresql-Design/terminal7.png"><br>图形界面：<br><img src="/2021/01/06/Postgresql-Design/gui7.png"></p>
-<h2><span id="7-实验总结">7 实验总结</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="71-遇到的问题和解决的办法">7.1 遇到的问题和解决的办法</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<h3><span id="1-java中存在乱码">1. Java中存在乱码</span></h3><p>解决方法：</p>
-<ul>
-<li>(1)替换成英文字符</li>
-<li>(2)修改java的配置，使用utf-8编码</li>
-<li>(3)gradle build.gradle中增加编译中utf-8的配置(花费将近5天时间排查)<h3><span id="2sql语句查询的结果存在空值会报错">2.sql语句查询的结果存在空值会报错</span></h3><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></li>
-</ul>
-<p>增加表的约束，拒绝空值，同时增加默认值</p>
-<h3><span id="72-系统设计的不足">7.2 系统设计的不足</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
-<p>Java字符乱码未得到完美的解决，终端输出中还是存在小部分乱码</p>
+<p>requests向服务器发送GET请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.get(url,stream=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>requstes.get函数的<strong>stream参数</strong>默认为False，即立即下载文件存放到客户端内存中，下载完毕后再保存到磁盘。若是文件过大，则会发生内存溢出的状况。这里设置成True，它不会立即下载，当你使用iter_content或iter_lines遍历内容或访问内容属性时才开始下载。需要注意一点：文件没有下载之前，它也会<strong>保持连接</strong>。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;Content-Length&#x27;: &#x27;5541196875&#x27;, </span><br><span class="line">&#x27;Content-Type&#x27;: &#x27;application/octet-stream&#x27;, </span><br><span class="line">&#x27;Last-Modified&#x27;: &#x27;Fri, 22 Jan 2021 09:01:58 GMT&#x27;, </span><br><span class="line">&#x27;Cache-Control&#x27;: &#x27;public, max-age=43200&#x27;, </span><br><span class="line">&#x27;Expires&#x27;: &#x27;Sat, 23 Jan 2021 01:14:03 GMT&#x27;, </span><br><span class="line">&#x27;ETag&#x27;: &#x27;&quot;1611306178.6277008-5791882315-4075163015&quot;&#x27;, </span><br><span class="line">&#x27;Date&#x27;: &#x27;Fri, 22 Jan 2021 13:14:03 GMT&#x27;, </span><br><span class="line">&#x27;Accept-Ranges&#x27;: &#x27;bytes&#x27;, </span><br><span class="line">&#x27;Content-Range&#x27;: &#x27;bytes 250685440-5791882314/5791882315&#x27;, </span><br><span class="line">&#x27;Server&#x27;: &#x27;Werkzeug/1.0.1 Python/3.8.6&#x27;&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是服务器返回的http报文头部。<br><strong>Content-Length</strong>为下载文件的总大小，客户端发送的http报文请求中需要包含<strong>Range 字段</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">header = &#123;</span><br><span class="line">        <span class="string">&quot;Range&quot;</span>: <span class="string">&quot;bytes=%d-&quot;</span> % temp_size </span><br><span class="line">        <span class="comment"># temp_size为当前已下载部分文件大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="requests切分下载大文件">requests切分下载大文件</span></h3><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">file_download = requests.get(url,stream=<span class="literal">True</span>, headers=header)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤掉不成功的响应，否则也会追加到文件中，污染数据</span></span><br><span class="line"><span class="comment"># 以下响应代码均为实际测试中得到</span></span><br><span class="line"><span class="keyword">if</span> file_download.status_code != <span class="number">200</span> <span class="keyword">and</span> file_download.status_code != <span class="number">206</span>:</span><br><span class="line">    print(<span class="string">&quot;status error %s&quot;</span> % file_download.status_code)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">if</span> file_download.status_code == <span class="number">416</span>:</span><br><span class="line">    print(<span class="string">&quot;file has been existed&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="comment"># 设置进度条中长度，依据个人情况而定</span></span><br><span class="line">show_size = <span class="number">50</span></span><br><span class="line"><span class="comment"># 每次file_download迭代器调用中会下载chunk_size大小的数据流，单位是B，不是网络传输中的bit</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> file_download.iter_content(chunk_size=<span class="number">1024</span>):</span><br><span class="line">    <span class="keyword">if</span> chunk:</span><br><span class="line">        temp_size += <span class="built_in">len</span>(chunk)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(save_file, <span class="string">&quot;ab&quot;</span>) <span class="keyword">as</span> output:</span><br><span class="line">            output.write(chunk)</span><br><span class="line">            output.flush()</span><br><span class="line">        done = temp_size/total_size*<span class="number">100</span></span><br><span class="line"></span><br><span class="line">        done_size = temp_size/total_size*show_size</span><br><span class="line">        left = show_size - <span class="built_in">int</span>(done_size)</span><br><span class="line">        <span class="comment"># 显示进度条和下载比重</span></span><br><span class="line">        print(<span class="string">&quot;\r[%s%s]%.2f%%&quot;</span>% (<span class="built_in">int</span>(done_size)*<span class="string">&quot;#&quot;</span>, left*<span class="string">&quot;@&quot;</span>, done), end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2><span id="安全性">安全性</span></h2><p><a href="#%E7%9B%AE%E5%BD%95">返回目录</a></p>
+<p>Flask框架的目标是微服务，最好是部署在内网中，如果部署在公网上，开发者一定要考虑到Flask开发的安全性。本人部署在公网的Flask服务器三个小时就遭到四次攻击。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">***.***.20.30 - - [22/Jan/2021 20:24:50] <span class="string">&quot;?[33mGET / HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.174.155 - - [22/Jan/2021 20:27:44] <span class="string">&quot;?[33mGET /login HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.174.155 - - [22/Jan/2021 20:27:44] <span class="string">&quot;?[33mGET /manager/html HTTP/1.0?[0m&quot;</span> 404 -</span><br><span class="line">***.***.20.30 - - [22/Jan/2021 21:33:14] <span class="string">&quot;?[33mOPTIONS / HTTP/1.0?[0m&quot;</span> 404 -</span><br></pre></td></tr></table></figure>
+<p>因为是运行在windows server系统中，所以存在部分乱码。从日志中可以看出是一些常规攻击，针对管理员网页等常规链接，由于本人并未设置此类链接，所以攻击被404拒绝请求，运气还是比较好的。</p>
+<blockquote>
+<p>参考博客:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nul1/p/9172068.html">https://www.cnblogs.com/nul1/p/9172068.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hunyxv/article/details/103031547">https://blog.csdn.net/hunyxv/article/details/103031547</a></p>
+</blockquote>
 
       
 
@@ -766,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://crazyn2.github.io/2021/01/06/Postgresql-Design/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://crazyn2.github.io/2021/01/22/iter-download/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -780,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/22/iter-download/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          iter_download
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/06/HBase-Design/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HBase设计实验报告</div>
+    <a href="/2021/01/06/Postgresql-Design/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据库管理设计</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -818,7 +341,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">数据库管理课程设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">1.需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1 数据需求描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2 系统功能需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.3 性能需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.4 数据字典</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">2 概念结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 局部E-R图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 全局E-R图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 优化后的全局E-R图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text">3 逻辑结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 关系模式设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 数据类型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 关系模式的优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text">4 物理结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 聚簇设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.2.</span> <span class="toc-text">4.2 索引设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.3.</span> <span class="toc-text">4.3 分区设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.6.</span> <span class="toc-text">5 数据库实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 基本表建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 索引的建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.3.</span> <span class="toc-text">5.3 触发器建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.4.</span> <span class="toc-text">5.4 存储过程建立</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.7.</span> <span class="toc-text">6 应用系统开发与试运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.7.1.</span> <span class="toc-text">6.1 开发平台和开发环境介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.7.2.</span> <span class="toc-text">6.2 系统功能图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">6.2.1 图形界面和逻辑分离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">6.2.2 命令行和图形界面共存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.8.</span> <span class="toc-text">7 实验总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.8.1.</span> <span class="toc-text">7.1 遇到的问题和解决的办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.8.2.</span> <span class="toc-text">1. Java中存在乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.8.3.</span> <span class="toc-text">2.sql语句查询的结果存在空值会报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.8.4.</span> <span class="toc-text">7.2 系统设计的不足</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">服务器和客户端实现文件断点续传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.1.</span> <span class="toc-text">Flask断点续传设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.1.</span> <span class="toc-text">服务器响应头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.2.</span> <span class="toc-text">requests切分下载大文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text">安全性</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
