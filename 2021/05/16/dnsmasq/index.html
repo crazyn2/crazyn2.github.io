@@ -9,15 +9,15 @@
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
   <title>dnsmasq | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="克莱森的博客">
+  <meta name="description" content="dnsmasq加速浏览器访问网站本人的Ubuntu20.04系统更新后，浏览器访问网站，特别是外网出现了很大的延迟，严重影响上网的体验。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dnsmasq">
 <meta property="og:url" content="https://crazyn2.github.io/2021/05/16/dnsmasq/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="克莱森的博客">
+<meta property="og:description" content="dnsmasq加速浏览器访问网站本人的Ubuntu20.04系统更新后，浏览器访问网站，特别是外网出现了很大的延迟，严重影响上网的体验。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-16T07:42:02.000Z">
-<meta property="article:modified_time" content="2021-05-16T07:42:02.842Z">
+<meta property="article:modified_time" content="2021-05-16T08:41:47.822Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1><span id="dnsmasq加速浏览器访问网站">dnsmasq加速浏览器访问网站</span></h1><p>本人的Ubuntu20.04系统更新后，浏览器访问网站，特别是外网出现了很大的延迟，严重影响上网的体验。</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83">网络环境</a></li>
+<li><a href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4%E5%92%8C%E9%94%81%E5%AE%9A">故障排除和锁定</a></li>
+<li><a href="#dnsmasq%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4">Dnsmasq安装步骤</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEdnsmasq%E6%96%87%E4%BB%B6">配置dnsmasq文件</a></li>
+<li><a href="#dnsmasq%E7%94%A8%E5%A4%84">dnsmasq用处</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="网络环境">网络环境</span></h2><p>路由器固件： padavan + ssr翻墙<br>电脑操作系统: Ubuntu20.04 x86_64</p>
+<h2><span id="故障排除和锁定">故障排除和锁定</span></h2><p>电脑切换回Windows系统，和在路由器局域网内使用手机上网，均没有出现类似的情况。</p>
+<p>既然是Ubuntu系统更新后发生的情况，那么问题应该出现在某个更新后的系统模块。同时只是延迟时间较长，并没有出现网络无法访问的情况，推测是在DNS域名解析花费了较大时间。正常情况下系统会使用本地DNS缓存加快网址访问，估计这里没有。最后决定，用dnsmasq替换Ubuntu系统自带的DNS域名解析模块，以加快网络访问。</p>
+<h2><span id="dnsmasq安装步骤">Dnsmasq安装步骤</span></h2><ol>
+<li><p>关闭systemd-resolved。systemd-resolved为本地应用程序提供了DNS域名解析服务，这里需要关闭它，释放53端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> --now systemd-resolved</span><br></pre></td></tr></table></figure></li>
+<li><p>安装dnsmasq</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; apt install dnsmasq -y</span><br></pre></td></tr></table></figure>
+<p>如果你未进行第一步骤，这里会出现dnsmasq启动失败的情况。</p>
+<h2><span id="配置dnsmasq文件">配置dnsmasq文件</span></h2></li>
+<li><p>Dnsmasq的配置文件是放在 /etc/dnsmasq.conf 中。</p>
+</li>
+<li><p>打开编辑，配置：resolv-file=/etc/resolv.dnsmasq.conf，表示dnsmasq 会从这个指定的文件中寻找上游dns服务器。同时取消 strict-order 前面的注册#号。</p>
+</li>
+<li><p>检查一下no-hosts前面是不是已经有了#号，默认的情况下是有的，dnsmasq 会首先寻找本地的 hosts 文件再去寻找缓存下来的域名, 最后去上游dns 服务器寻找。</p>
+</li>
+<li><p>设置listen-address=127.0.0.1，表示这个 dnsmasq 本机自己使用有效。注意：如果你想让本机所在的局域网的其它电脑也能够使用上Dnsmasq，应该把本机的局域网IP加上去：listen-address=192.168.1.123,127.0.0.1</p>
+</li>
+<li><p>增加dnsmasq域名缓存数量和在本机的生存时间</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-size=1024</span><br><span class="line">max-cache-ttl=3600</span><br><span class="line">min-cache-ttl=3600</span><br></pre></td></tr></table></figure>
+<p>如果无法找到对应的选项，则手动添加。3600单位是秒，这里设置本地生存时间为一个小时，再大需要重新编译dnsmasq。</p>
+</li>
+<li><p>另外我们还需要修改/etc/resolv.conf这个文件，执行以下命令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;nameserver 127.0.0.1&#x27;</span> &gt; /etc/resolv.conf</span><br><span class="line">cp /etc/resolv.conf /etc/resolv.dnsmasq.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;nameserver 8.8.8.8&#x27;</span> &gt; /etc/resolv.dnsmasq.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;nameserver 119.29.29.29&#x27;</span> &gt;&gt; /etc/resolv.dnsmasq.conf</span><br><span class="line">cp /etc/hosts /etc/dnsmasq.hosts</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;addn-hosts=/etc/dnsmasq.hosts&#x27;</span> &gt;&gt; /etc/dnsmasq.conf</span><br></pre></td></tr></table></figure>
+<p>nameserver配置的是DNS解析服务器ip，一般会配置ip为114.114.114.114的DNS服务器，但是本人最近发现该服务器不尽人意，所以替换成119.29.29.29</p>
+</li>
+<li><p>重启dnsmasq服务，使配置文件生效</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service dnsmasq restart</span><br></pre></td></tr></table></figure>
+<p>这里重新打开浏览器，第一次访问网站依旧很慢，但是接下来速度都会非常流畅</p>
+<h2><span id="dnsmasq用处">dnsmasq用处</span></h2></li>
+<li><p>本地DNS。将Dnsmasq作为本地DNS服务器使用，直接修改电脑的本地DNS的IP地址即可。</p>
+</li>
+<li><p>应对ISP的DNS劫持。输入一个不存在的域名，正常的情况下浏览器是显示无法连接，DNS劫持会跳转到一个广告页面。先随便nslookup 一个不存在的域名，看看ISP商劫持的IP地址。</p>
+</li>
+<li><p>接着编辑/etc/dnsmasq.conf文件，将：bogus-nxdomain=123.123.123.123　加入进去，后面的IP是刚刚查询到的DNS劫持IP地址。</p>
+</li>
+<li><p>重启dnsmasq，再尝试打开不存在的域名，这时浏览器就会显示正常的无法连接页面了。</p>
+</li>
+<li><p>智能DNS加快解析速度。打开/etc/dnsmasq.conf文件，server=后面可以添加指定的DNS，例如国内外不同的网站使用不同的DNS。</p>
+</li>
+</ol>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#国内指定DNS</span><br><span class="line">server=/cn/114.114.114.114</span><br><span class="line">server=/taobao.com/114.114.114.114</span><br><span class="line">server=/taobaocdn.com/114.114.114.114</span><br><span class="line">#国外指定DNS</span><br><span class="line">server=/google.com/223.5.5.5</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li><p>server=/cn/表示所有的cn域名都使用114这个公共DNS，server=/taobao.com/表示所有的taobao.com域名都用114，223.5.5.5 是阿里云的公共DNS，你可以换成其它的。</p>
+</li>
+<li><p>屏蔽网页广告。将指广告的URL指定127这个IP，就可以将网页上讨厌的广告给去掉了。</p>
+</li>
+</ol>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">address=/ad.youku.com/127.0.0.1</span><br><span class="line">address=/ad.iqiyi.com/127.0.0.1</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li><p>指定域名解析到特定的IP上。这个功能可以让你控制一些网站的访问，非法的DNS就经常把一些正规的网站解析到不正确IP上。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address=/freehao123.com/123.123.123.123</span><br></pre></td></tr></table></figure></li>
+<li><p>内网DNS。首先将局域网中的所有的设备的本地DNS设置为已经安装Dnsmasq的服务器IP地址。然后修改已经安装Dnsmasq的服务器Hosts文件：/etc/hosts，指定域名到特定的IP中。</p>
+</li>
+<li><p>例如想让局域网中的所有用户访问<a href="http://www.freehao123.com时跳转到192.168.0.2，添加：192.168.0.2">www.freehao123.com时跳转到192.168.0.2，添加：192.168.0.2</a> <a target="_blank" rel="noopener" href="http://www.freehao123.com在hosts文件中既可,整个过程也可以说是“dns劫持”./">www.freehao123.com在Hosts文件中既可，整个过程也可以说是“DNS劫持”。</a></p>
+</li>
+</ol>
+
       
 
       
@@ -291,7 +362,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">dnsmasq加速浏览器访问网站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">网络环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">故障排除和锁定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">Dnsmasq安装步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text">配置dnsmasq文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text">dnsmasq用处</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
