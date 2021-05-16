@@ -233,7 +233,12 @@
 <p>缺点：受制于公网服务器带宽，使用中间服务器转发即可实现相同效果。</p>
 <p>方案二:可考虑使用内网穿透端口映射frp+vpn,二者缺一不可。理论上依旧存在不可行之处，需要实践进行检验，优先推荐使用方案一</p>
 <p>frp内网穿透经本人测试后，发现只能外网访问内网机器,内网访问tracker服务器依旧是nat转换后的ip地址，不可用，所以需要使用vpn访问tracker服务器记录内网BT端口内网穿透映射后的地址。后期开发，可考虑整合qBittorrent和frp实现内网种子客户端作为上传宿主机，同时二者都是开源软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[qBittorrent BT端口] --&gt;B[vpn端口]</span><br><span class="line">B --&gt; C[tracker服务器]</span><br><span class="line">C --&gt; D[服务器记录种子客户端socket地址]</span><br><span class="line">E[qBittorrent下载用户请求下载用户] --&gt; F[tracker服务器返回记录的种子客户端socket地址]</span><br><span class="line">F --&gt; G[下载用户请求种子用户传输文件]</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph TD
+A[qBittorrent BT端口] -->B[vpn端口]
+B --> C[tracker服务器]
+C --> D[服务器记录种子客户端socket地址]
+E[qBittorrent下载用户请求下载用户] --> F[tracker服务器返回记录的种子客户端socket地址]
+F --> G[下载用户请求种子用户传输文件]</pre>
 <p>参考博客:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1784855023/article/details/85016937">https://blog.csdn.net/qq1784855023/article/details/85016937</a></p>
 
       
