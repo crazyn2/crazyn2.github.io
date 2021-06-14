@@ -144,6 +144,150 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-comusing-network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/14/comusing-network/">comusing network</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/14/comusing-network/" class="archive-article-date">
+  	<time datetime="2021-06-14T14:35:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="使用aria2消耗下行流量">使用aria2消耗下行流量</span></h1><h2><span id="开发环境">开发环境</span></h2><p>开发语言: Python</p>
+<p>Python版本: 1.Python3.8.5 2.Python3.9.2 两个版本使用略有不同，请查看注意事项</p>
+<h2><span id="原理分析">原理分析</span></h2><p>aria2是个轻量级的下载器，支持 BT、磁力、HTTP、FTP 等下载协议，性能消耗远低于qBittorren，迅雷就更不用说了。本项目中，aria2重复下载大文件清空磁盘步骤，制造下行流量。</p>
+<p>pyaria2.py 前人编写的rpc操作aria2调用库，本人在这里进行了部分修改，允许使用AriaNg查看</p>
+<p>main.py 本人编写的核心脚本，主要完成调用aria2下载文件，删除下载任务，清空已下载文件，重复以上步骤</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyaria2 <span class="keyword">import</span> PyAria2</span><br><span class="line"><span class="keyword">from</span> pyaria2 <span class="keyword">import</span> download_dir</span><br><span class="line"><span class="keyword">import</span> os, json, shutil, psutil</span><br><span class="line"><span class="keyword">import</span> time, logging</span><br><span class="line">logging.basicConfig(level=logging.DEBUG, \</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s-%(name)s-%(levelname)s-%(message)s&#x27;</span>,\</span><br><span class="line">    filename=<span class="string">&quot;running.log&quot;</span>,\</span><br><span class="line">    filemode=<span class="string">&quot;a&quot;</span>)</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line">torrent_dir = <span class="string">&quot;torrent&quot;</span></span><br><span class="line">download = <span class="string">&quot;aria2_downloads&quot;</span></span><br><span class="line"><span class="comment"># 54M</span></span><br><span class="line">limit = <span class="number">4</span>*<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">1024</span></span><br><span class="line">aria2 = PyAria2()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_workspace</span>():</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(download):</span><br><span class="line">        shutil.rmtree(download, ignore_errors=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">all</span> = aria2.tellActive()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">all</span>:</span><br><span class="line">        aria2.remove(i[<span class="string">&quot;gid&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span>():</span></span><br><span class="line">    </span><br><span class="line">    files = os.listdir(torrent_dir)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="comment"># print(&quot;each %s&quot; % file)</span></span><br><span class="line">        aria2.addTorrent(os.path.join(torrent_dir, file))</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_all</span>():</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">all</span> = aria2.tellActive()</span><br><span class="line">    <span class="comment"># print(&quot;delete_before:&quot;)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">all</span>:</span><br><span class="line">        aria2.remove(i[<span class="string">&#x27;gid&#x27;</span>])</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> os.path.exists(download):</span><br><span class="line">        shutil.rmtree(download, ignore_errors=<span class="literal">True</span>)</span><br><span class="line">        time.sleep(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_alive</span>():</span></span><br><span class="line">    <span class="built_in">all</span> = aria2.tellActive()</span><br><span class="line">    live = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">all</span>:</span><br><span class="line">        live.append(i[<span class="string">&#x27;gid&#x27;</span>])</span><br><span class="line">    logger.debug(live)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_key</span>():</span></span><br><span class="line"> </span><br><span class="line">    key_info = psutil.net_io_counters(pernic=<span class="literal">True</span>)  <span class="comment"># 获取网卡名称</span></span><br><span class="line">    key_info.pop(<span class="string">&quot;lo&quot;</span>)</span><br><span class="line">    key_info = key_info.keys()</span><br><span class="line">    recv = <span class="number">0</span></span><br><span class="line">    sent = <span class="number">0</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> key_info:</span><br><span class="line">        recv += psutil.net_io_counters(pernic=<span class="literal">True</span>).get(key).bytes_recv  <span class="comment"># 各网卡接收的字节数</span></span><br><span class="line">        sent += psutil.net_io_counters(pernic=<span class="literal">True</span>).get(key).bytes_sent  <span class="comment"># 各网卡发送的字节数</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> recv, sent</span><br><span class="line"></span><br><span class="line">begin_recv, begin_sent = get_key()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_main</span>():</span></span><br><span class="line">    <span class="keyword">global</span> begin_recv, begin_sent</span><br><span class="line">    clean_workspace()</span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">    start()</span><br><span class="line">    <span class="comment"># counter设置时间间隔清空下载文件，时间不宜太短</span></span><br><span class="line">    counter = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">        <span class="comment"># log_alive()</span></span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line">        now_recv, now_sent = get_key()</span><br><span class="line">        total = now_recv - begin_recv + now_sent - begin_sent</span><br><span class="line">        kb = <span class="built_in">float</span>(total)/<span class="number">1024</span>/<span class="number">1024</span></span><br><span class="line">        print(<span class="string">&quot;\rtotal: %fMB&quot;</span> % kb, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="comment"># 有时会出现添加失败，需要反复检查存活的下载链接</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(aria2.tellActive()) == <span class="number">0</span>:</span><br><span class="line">            start()</span><br><span class="line">            time.sleep(<span class="number">4</span>)</span><br><span class="line">        <span class="keyword">if</span> total &gt;= limit:</span><br><span class="line">            print(<span class="string">&quot;\ndelete disk file and restart...&quot;</span>)</span><br><span class="line">            delete_all()</span><br><span class="line">            print(<span class="string">&quot;time to sleep&quot;</span>)</span><br><span class="line">            time.sleep(<span class="number">4</span>)</span><br><span class="line">            print(<span class="string">&quot;time to start&quot;</span>)</span><br><span class="line">            start()</span><br><span class="line">            <span class="comment"># log_alive()</span></span><br><span class="line">            begin_recv, begin_sent = now_recv, now_sent</span><br><span class="line">            time.sleep(<span class="number">4</span>)</span><br><span class="line">            print(<span class="string">&quot;circulation&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 鬼畜的Python，如何不把步骤放在test_main执行，会出现程序假死的情况</span></span><br><span class="line">    test_main()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># clean_workspace()</span></span><br><span class="line">    <span class="comment"># time.sleep(3)</span></span><br><span class="line">    <span class="comment"># start()</span></span><br><span class="line">    <span class="comment"># counter = 0</span></span><br><span class="line">    <span class="comment"># while True:</span></span><br><span class="line">    <span class="comment">#     time.sleep(1)</span></span><br><span class="line">    <span class="comment">#     log_alive()</span></span><br><span class="line">    <span class="comment">#     counter += 1</span></span><br><span class="line">    <span class="comment">#     now_recv, now_sent = get_key()</span></span><br><span class="line">    <span class="comment">#     total = now_recv - begin_recv + now_sent - begin_sent</span></span><br><span class="line">    <span class="comment">#     kb = float(total)/1024/1024</span></span><br><span class="line">    <span class="comment">#     print(&quot;\rtotal: %fMB&quot; % kb, end=&quot;&quot;)</span></span><br><span class="line">    <span class="comment">#     # 有时会出现添加失败，需要反复检查存活的下载链接</span></span><br><span class="line">    <span class="comment">#     if len(aria2.tellActive()) == 0:</span></span><br><span class="line">    <span class="comment">#         start()</span></span><br><span class="line">    <span class="comment">#         time.sleep(4)</span></span><br><span class="line">    <span class="comment">#     if total &gt;= limit:</span></span><br><span class="line">    <span class="comment">#         print(&quot;\ndelete disk file and restart...&quot;)</span></span><br><span class="line">    <span class="comment">#         delete_all()</span></span><br><span class="line">    <span class="comment">#         time.sleep(2)</span></span><br><span class="line">    <span class="comment">#         start()</span></span><br><span class="line">    <span class="comment">#         log_alive()</span></span><br><span class="line">    <span class="comment">#         begin_recv, begin_sent = now_recv, now_sent</span></span><br><span class="line">    <span class="comment">#         time.sleep(4)</span></span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+<h2><span id="注意事项">注意事项</span></h2><ol>
+<li>如果你是Python3.8.5的环境，不要用python脚本启动aria2，不然aria2很容易崩溃，推测是python3.8.5的bug，本人在这里花费了将近两天。Python3.9.2，conda环境，经本人测试是完全可以的。</li>
+</ol>
+<p>shell启动aria2命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aria2c --enable-rpc --rpc-listen-port 6800 --<span class="built_in">continue</span> --max-concurrent-downloads=20 --max-connection-per-server=10 --rpc-allow-origin-all=<span class="literal">true</span>  --dir /home/zhang/下载/tmp/aria2_downloads --rpc-max-request-size=1024M &amp;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>种子一定要自己找好，筛选很重要，这关系到跑流量的成败。不要选择非常冷门的种子，下载速度会非常慢。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/14/comusing-network/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-virtualbox-ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/06/virtualbox-ubuntu/">virtualbox-ubuntu</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/06/virtualbox-ubuntu/" class="archive-article-date">
+  	<time datetime="2021-06-05T16:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##<br>1.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install virtualbox-guest-utils virtualbox-guest-x11</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Graphics Controller:VboxVGA not </li>
+<li>Shared Clipboard and<br>General-&gt;Advanced-&gt;Shared Clipboard:Bidirectional<br>General-&gt;Advanced-&gt;Drag’n’Drop:Bidirectional</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/06/virtualbox-ubuntu/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-dnsmasq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -669,148 +813,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/01/02/vsocde-tomcat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-p2p-build" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/21/p2p-build/">p2p分发文件搭建测试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/12/21/p2p-build/" class="archive-article-date">
-  	<time datetime="2020-12-21T13:39:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="p2p分发文件搭建测试"><a href="#p2p分发文件搭建测试" class="headerlink" title="p2p分发文件搭建测试"></a>p2p分发文件搭建测试</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
-        
-          <a class="article-more-a" href="/2020/12/21/p2p-build/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/21/p2p-build/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-asr-comparison" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/17/asr-comparison/">中文语音识别项目效果比较</a>
-    </h1>
-  
-
-        
-        <a href="/2020/12/17/asr-comparison/" class="archive-article-date">
-  	<time datetime="2020-12-17T04:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="几个中文语音识别项目效果比较"><a href="#几个中文语音识别项目效果比较" class="headerlink" title="几个中文语音识别项目效果比较"></a>几个中文语音识别项目效果比较</h1><p>谷歌在线语音识别，腾讯api，百度api，柠檬博主开源项目，百度语音识别开源项目</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
-        
-          <a class="article-more-a" href="/2020/12/17/asr-comparison/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/17/asr-comparison/">展开全文 >></a>
         </p>
       
 
