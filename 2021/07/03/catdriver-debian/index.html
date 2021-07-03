@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-device.png">
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-device1.png">
 <meta property="article:published_time" content="2021-07-03T11:19:39.000Z">
-<meta property="article:modified_time" content="2021-07-03T12:09:56.122Z">
+<meta property="article:modified_time" content="2021-07-03T12:11:03.733Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -178,6 +178,18 @@
 <p>ttl转usb接口淘宝购买链接<br>2啊aaQ0XRhxbCH哈 <a target="_blank" rel="noopener" href="https://m.tb.cn/h.4wQxZCl?sm=62c9a3">https://m.tb.cn/h.4wQxZCl?sm=62c9a3</a>  USB转TTL USB转串口下载线CH340G模块 RS232升级板刷机板线PL2303</p>
 </blockquote>
 <p>本人购买的是CH340G USB转TTL 带外壳,虽然这个图示里没有写明送杜邦线,但是我收到的快递里面跟其他一样也是有送杜邦线的。收到快递记得向客服要驱动,驱动只有win版本的。注意(仅针对这款USB转TTL)查看末端小板的黄色小帽是不是连接3.3V和TTL,如果不是请拔掉重新盖,如何连接5V和TTL的话,COM3端口是不会有输出的。</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#putty%E6%89%93%E5%BC%80ttl%E7%BB%88%E7%AB%AF">PuTTY打开TTL终端</a><ul>
+<li><a href="#%E5%88%B7emmc%E9%87%8D%E8%A3%85debian">刷emmc,重装Debian</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
 <p>以下图示是正确的接法<br><img src="/2021/07/03/catdriver-debian/ttl-use-check.jpg"></p>
 <p>TTL线连接,这里的白跟灰有点分不清,猫盘Plus主板UART最左边那根白色的是GND地线,这根跟TTL转USB板的GND连接,注意千万别接多余的线。<br><img src="/2021/07/03/catdriver-debian/ttl-catdriver.jpg"><br><img src="/2021/07/03/catdriver-debian/ttl-usb.jpg"></p>
 <h3><span id="putty打开ttl终端">PuTTY打开TTL终端</span></h3><p>PuTTY安装后打开session,选择serial协议,COM3, 波特率为115200。如果没有serial协议,则到Connection-&gt;Serial进行相应配置,点击Open<br><img src="/2021/07/03/catdriver-debian/PuTTY.png"><br>具体是COMx,可以打开Windows设备管理器查看</p>
