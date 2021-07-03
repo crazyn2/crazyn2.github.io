@@ -165,12 +165,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="猫盘Plus重刷Debian"><a href="#猫盘Plus重刷Debian" class="headerlink" title="猫盘Plus重刷Debian"></a>猫盘Plus重刷Debian</h1><p>由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="所需硬件设备"><a href="#所需硬件设备" class="headerlink" title="所需硬件设备"></a>所需硬件设备</h3><p>sata3接口的金士顿固态硬盘</p>
-<p>USB转TTL</p>
-<blockquote>
-<p>ttl转usb接口淘宝购买链接<br>2啊aaQ0XRhxbCH哈 <a target="_blank" rel="noopener" href="https://m.tb.cn/h.4wQxZCl?sm=62c9a3">https://m.tb.cn/h.4wQxZCl?sm=62c9a3</a>  USB转TTL USB转串口下载线CH340G模块 RS232升级板刷机板线PL2303</p>
-</blockquote>
-<p>本人购买的是CH340G USB转TTL 带外壳,虽然这个图示里没有写明送杜邦线,但是我收到的快递里面跟其他一样也是有送杜邦线的。收到快递记得向客服要驱动,驱动只有win版本的。注意(仅针对这款USB转TTL)查看末端小板的黄色小帽是不是连接3.3V和TTL,如果不是请拔掉重新盖,如何连接5V和TTL的话,COM3端口是不会有输出的。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
         
           <a class="article-more-a" href="/2021/07/03/catdriver-debian/#more">more >></a>
         
@@ -235,52 +230,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1><span id="vnc实现远程桌面管理">VNC实现远程桌面管理</span></h1><p>服务器操作系统: Ubuntu20.04<br>VNC服务器端:TigerVNC<br>客户端操作系统: Ubuntu20.04</p>
-<h2><span id="远程服务器配置">远程服务器配置</span></h2><p>如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。</p>
-<ol>
-<li>安装xfce4图形界面<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y</span><br></pre></td></tr></table></figure></li>
-<li>安装TigerVNC，高性能 VNC 服务器，并被积极维护。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tigervnc-standalone-server tigervnc-common</span><br></pre></td></tr></table></figure></li>
-<li>运行vncserver命令，初始配置并设置密码，运行时不要使用 sudo<br>VncAuth设置密码认证，TLSVnc设置VNC加密传输<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -SecurityTypes&#x3D;VncAuth,TLSVnc</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>系统将提示您输入并确认密码，以及是否将其设置为仅查看密码。如果您选择设置仅查看密码，则用户将无法使用鼠标和键盘与 VNC 实例进行交互。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">You will require a password to access your desktops.</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y&#x2F;n)? n</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;xauth:  file &#x2F;home&#x2F;typhoon&#x2F;.Xauthority does not exist</span><br><span class="line"></span><br><span class="line">New &#39;server2.typhoon.org:1 (typhoon)&#39; desktop at :1 on machine server2.typhoon.org</span><br><span class="line"></span><br><span class="line">Starting applications specified in &#x2F;etc&#x2F;X11&#x2F;Xvnc-session</span><br><span class="line">Log file is &#x2F;home&#x2F;typhoon&#x2F;.vnc&#x2F;server2.typhoon.org:1.log</span><br><span class="line"></span><br><span class="line">Use xtigervncviewer -SecurityTypes VncAuth -passwd &#x2F;home&#x2F;typhoon&#x2F;.vnc&#x2F;passwd :1 to connect to the VNC server.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>第一次 vncserver 运行命令时，它将创建密码文件并将其存储在 ~/.vnc 目录中，如果不存在，将创建该目录。</p>
-<p>注意上面输出中主机名之后的 :1 。这表示运行 vnc 服务器的显示端口号。在我们的例子中，服务器在 TCP 端口 5901 (5900 + 1)上运行。如果您创建第二个实例， vncserver 它将在下一个空闲端口上运行，即 :2 这意味着服务器正在端口 5902 (5900 + 2)上运行。</p>
-<p>重要的是要记住，当使用 VNC 服务器时， :X 是一个引用的显示端口 5900+X 。<br>4. 配置 VNC 服务器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-<p>输入以下内容</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="built_in">exec</span> startxfce4 </span><br></pre></td></tr></table></figure>
-<p>~/.vnc/xstartup 文件还需要具有执行权限</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-<p>如果需要将附加选项传递给 VNC 服务器，则可以创建一个名为 config 的文件，并为每行添加一个选项。这是一个例子：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vnc/config</span><br></pre></td></tr></table></figure>
-<p>增加以下内容</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">geometry=1920x1084</span><br><span class="line">dpi=96</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>停止vncserver服务实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
-<h2><span id="本地机配置">本地机配置</span></h2>VNC客户端: noVNC</li>
-</ol>
-<blockquote>
-<p>noVNC github地址:<br><a target="_blank" rel="noopener" href="https://github.com/novnc/noVNC">https://github.com/novnc/noVNC</a></p>
-</blockquote>
-<ol>
-<li>下载后，终端切换到noVNC工作目录，执行命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./utils/launch.sh --vnc &#123;服务器ip&#125;:&#123;vnc端口&#125;</span><br></pre></td></tr></table></figure></li>
-<li>根据执行命令输出提示，在浏览器打开地址即可<h2><span id="xfce4安装后的基本配置">xfce4安装后的基本配置</span></h2></li>
-</ol>
-<h3><span id="适配屏幕大小">适配屏幕大小</span></h3><ol>
-<li>打开面板首选项。所有应用程序-&gt;设置-&gt;面板</li>
-<li>面板一栏，图标，选择自动调整大小<br><img src="/2021/06/22/vnc-config/board.png"><h3><span id="设置黑暗主题">设置黑暗主题</span></h3></li>
-<li>打开外观设置。所有应用程序-&gt;设置-&gt;外观</li>
-<li>样式中选择Adwaita-dark，只要是-dark结尾的都是黑暗主题<h3><span id="设置输入法">设置输入法</span></h3></li>
-<li>安装ibus<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install ibus ibus-pinyin</span><br></pre></td></tr></table></figure></li>
-<li>打开ibus。打开外观设置。所有应用程序-&gt;设置-&gt;iBus首选项，点击”是”</li>
-<li>根据提示添加到$HOME/.bashrc<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GTK_IM_MODULE&#x3D;ibus</span><br><span class="line">export XMODIFIERS&#x3D;@im&#x3D;ibus</span><br><span class="line">export QT_IM_MODULE&#x3D;ibus</span><br></pre></td></tr></table></figure></li>
-<li>点击右上角的输入法图表，</li>
-</ol>
-
+        <h1 id="VNC实现远程桌面管理"><a href="#VNC实现远程桌面管理" class="headerlink" title="VNC实现远程桌面管理"></a>VNC实现远程桌面管理</h1><p>服务器操作系统: Ubuntu20.04<br>VNC服务器端:TigerVNC<br>客户端操作系统: Ubuntu20.04</p>
+        
+          <a class="article-more-a" href="/2021/06/22/vnc-config/#more">more >></a>
+        
       
 
       
@@ -344,8 +297,7 @@
       
         <h1 id="使用aria2消耗下行流量"><a href="#使用aria2消耗下行流量" class="headerlink" title="使用aria2消耗下行流量"></a>使用aria2消耗下行流量</h1><h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>开发语言: Python</p>
 <p>Python版本: 1.Python3.8.5 2.Python3.9.2 两个版本使用略有不同，请查看注意事项</p>
-<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p>aria2是个轻量级的下载器，支持 BT、磁力、HTTP、FTP 等下载协议，性能消耗远低于qBittorren，迅雷就更不用说了。本项目中，aria2重复下载大文件清空磁盘步骤，制造下行流量。</p>
-<p>pyaria2.py 前人编写的rpc操作aria2调用库，本人在这里进行了部分修改，允许使用AriaNg查看</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
         
           <a class="article-more-a" href="/2021/06/14/comusing-network/#more">more >></a>
         

@@ -9,16 +9,16 @@
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
   <title>vnc config | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04 远程服务器配置如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。  安装xfce4图形界面1sudo apt update &amp;&amp;a">
+  <meta name="description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vnc config">
 <meta property="og:url" content="https://crazyn2.github.io/2021/06/22/vnc-config/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04 远程服务器配置如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。  安装xfce4图形界面1sudo apt update &amp;&amp;a">
+<meta property="og:description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04">
 <meta property="og:locale">
 <meta property="og:image" content="https://crazyn2.github.io/2021/06/22/vnc-config/board.png">
 <meta property="article:published_time" content="2021-06-22T11:18:15.000Z">
-<meta property="article:modified_time" content="2021-06-22T12:02:51.503Z">
+<meta property="article:modified_time" content="2021-07-03T12:12:04.693Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -167,6 +167,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1><span id="vnc实现远程桌面管理">VNC实现远程桌面管理</span></h1><p>服务器操作系统: Ubuntu20.04<br>VNC服务器端:TigerVNC<br>客户端操作系统: Ubuntu20.04</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE">远程服务器配置</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E6%9C%BA%E9%85%8D%E7%BD%AE">本地机配置</a></li>
+<li><a href="#xfce4%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">xfce4安装后的基本配置</a><ul>
+<li><a href="#%E9%80%82%E9%85%8D%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F">适配屏幕大小</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E9%BB%91%E6%9A%97%E4%B8%BB%E9%A2%98">设置黑暗主题</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95">设置输入法</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
 <h2><span id="远程服务器配置">远程服务器配置</span></h2><p>如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。</p>
 <ol>
 <li>安装xfce4图形界面<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y</span><br></pre></td></tr></table></figure></li>

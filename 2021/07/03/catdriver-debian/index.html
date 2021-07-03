@@ -9,12 +9,12 @@
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
   <title>catdriver-debian | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="猫盘Plus重刷Debian由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。 准备所需硬件设备sata3接口的金士顿固态硬盘 USB转TTL  ttl转usb接口淘宝购买链接2啊aaQ0XRhxbCH哈 https:&#x2F;&#x2F;m.tb.cn&#x2F;h.4wQx">
+  <meta name="description" content="猫盘Plus重刷Debian由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。 目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="catdriver-debian">
 <meta property="og:url" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="猫盘Plus重刷Debian由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。 准备所需硬件设备sata3接口的金士顿固态硬盘 USB转TTL  ttl转usb接口淘宝购买链接2啊aaQ0XRhxbCH哈 https:&#x2F;&#x2F;m.tb.cn&#x2F;h.4wQx">
+<meta property="og:description" content="猫盘Plus重刷Debian由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。 目录">
 <meta property="og:locale">
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-use-check.jpg">
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-catdriver.jpg">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-device.png">
 <meta property="og:image" content="https://crazyn2.github.io/2021/07/03/catdriver-debian/ttl-device1.png">
 <meta property="article:published_time" content="2021-07-03T11:19:39.000Z">
-<meta property="article:modified_time" content="2021-07-03T12:11:03.733Z">
+<meta property="article:modified_time" content="2021-07-03T12:12:33.813Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
@@ -172,24 +172,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1><span id="猫盘plus重刷debian">猫盘Plus重刷Debian</span></h1><p>由于本人的错误操作,将根目录的文件所有者都改为了root,导致openmediavault无法正常使用,多次重装openmediavault也无效。最后买来ttl转usb接口,给猫盘Plus重新刷机。</p>
+<h2><span id="目录">目录</span></h2><a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87">准备</a><ul>
+<li><a href="#%E6%89%80%E9%9C%80%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87">所需硬件设备</a></li>
+<li><a href="#putty%E6%89%93%E5%BC%80ttl%E7%BB%88%E7%AB%AF">PuTTY打开TTL终端</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%B7emmc%E9%87%8D%E8%A3%85debian">刷emmc,重装Debian</a></li>
+</ul>
+<!-- tocstop -->
+
 <h2><span id="准备">准备</span></h2><h3><span id="所需硬件设备">所需硬件设备</span></h3><p>sata3接口的金士顿固态硬盘</p>
 <p>USB转TTL</p>
 <blockquote>
 <p>ttl转usb接口淘宝购买链接<br>2啊aaQ0XRhxbCH哈 <a target="_blank" rel="noopener" href="https://m.tb.cn/h.4wQxZCl?sm=62c9a3">https://m.tb.cn/h.4wQxZCl?sm=62c9a3</a>  USB转TTL USB转串口下载线CH340G模块 RS232升级板刷机板线PL2303</p>
 </blockquote>
 <p>本人购买的是CH340G USB转TTL 带外壳,虽然这个图示里没有写明送杜邦线,但是我收到的快递里面跟其他一样也是有送杜邦线的。收到快递记得向客服要驱动,驱动只有win版本的。注意(仅针对这款USB转TTL)查看末端小板的黄色小帽是不是连接3.3V和TTL,如果不是请拔掉重新盖,如何连接5V和TTL的话,COM3端口是不会有输出的。</p>
-<a id="more"></a>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#putty%E6%89%93%E5%BC%80ttl%E7%BB%88%E7%AB%AF">PuTTY打开TTL终端</a><ul>
-<li><a href="#%E5%88%B7emmc%E9%87%8D%E8%A3%85debian">刷emmc,重装Debian</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
 <p>以下图示是正确的接法<br><img src="/2021/07/03/catdriver-debian/ttl-use-check.jpg"></p>
 <p>TTL线连接,这里的白跟灰有点分不清,猫盘Plus主板UART最左边那根白色的是GND地线,这根跟TTL转USB板的GND连接,注意千万别接多余的线。<br><img src="/2021/07/03/catdriver-debian/ttl-catdriver.jpg"><br><img src="/2021/07/03/catdriver-debian/ttl-usb.jpg"></p>
 <h3><span id="putty打开ttl终端">PuTTY打开TTL终端</span></h3><p>PuTTY安装后打开session,选择serial协议,COM3, 波特率为115200。如果没有serial协议,则到Connection-&gt;Serial进行相应配置,点击Open<br><img src="/2021/07/03/catdriver-debian/PuTTY.png"><br>具体是COMx,可以打开Windows设备管理器查看</p>
@@ -335,7 +337,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">猫盘Plus重刷Debian</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.1.</span> <span class="toc-text">所需硬件设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.2.</span> <span class="toc-text">PuTTY打开TTL终端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">刷emmc,重装Debian</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">猫盘Plus重刷Debian</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.1.</span> <span class="toc-text">所需硬件设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.2.</span> <span class="toc-text">PuTTY打开TTL终端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">刷emmc,重装Debian</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
