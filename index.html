@@ -173,7 +173,8 @@
 <p>本人购买的是CH340G USB转TTL 带外壳,虽然这个图示里没有写明送杜邦线,但是我收到的快递里面跟其他一样也是有送杜邦线的。收到快递记得向客服要驱动,驱动只有win版本的。注意(仅针对这款USB转TTL)查看末端小板的黄色小帽是不是连接3.3V和TTL,如果不是请拔掉重新盖,如何连接5V和TTL的话,COM3端口是不会有输出的。</p>
 <p>以下图示是正确的接法<br><img src="/2021/07/03/catdriver-debian/ttl-use-check.jpg"></p>
 <p>TTL线连接,这里的白跟灰有点分不清,猫盘Plus主板UART最左边那根白色的是GND地线,这根跟TTL转USB板的GND连接,注意千万别接多余的线。<br><img src="/2021/07/03/catdriver-debian/ttl-catdriver.jpg"><br><img src="/2021/07/03/catdriver-debian/ttl-usb.jpg"></p>
-<h3><span id="putty打开ttl终端">PuTTY打开TTL终端</span></h3><p>PuTTY安装后打开session,选择serial协议,波特率为115200。如果没有serial协议,则到<br>按照图示<br>接好线插上后TTL蓝灯会亮,绿灯闪烁</p>
+<h3><span id="putty打开ttl终端">PuTTY打开TTL终端</span></h3><p>PuTTY安装后打开session,选择serial协议,COM3, 波特率为115200。如果没有serial协议,则到Connection-&gt;Serial进行相应配置,点击Open<br><img src="/2021/07/03/catdriver-debian/PuTTY.png"><br>具体是COMx,可以打开Windows设备管理器查看</p>
+<p>这是安装驱动前的,没有显示COMx<br><img src="/2021/07/03/catdriver-debian/ttl-device.png"><br>安装驱动后就可以查看了,我这里是COM3<br><img src="/2021/07/03/catdriver-debian/ttl-device1.png"><br>接好线,给猫盘上电,TTL蓝灯会亮,绿灯闪烁</p>
 <h2><span id="刷emmc重装debian">刷emmc,重装Debian</span></h2><blockquote>
 <p>参考博客<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/77e529fb35f9">https://www.jianshu.com/p/77e529fb35f9</a><br>接好线插上后TTL蓝灯会亮,绿灯闪烁,PuTTY的TTL终端会有如下输出,在倒计时结束前, 敲击回车键进入新uboot</p>
 </blockquote>
