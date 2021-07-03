@@ -7,22 +7,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="google-site-verification" content="Dr7PhtET7FnHncfcsd0RxbU5hYTIAOXLDTP5Pmu_qP4" />
   <link rel="dns-prefetch" href="https://crazyn2.github.io">
-  <title>vnc config | crazyn的个人博客</title>
+  <title>Archives: 2021/7 | crazyn的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04 远程服务器配置如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。  安装xfce4图形界面1sudo apt update &amp;&amp;a">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vnc config">
-<meta property="og:url" content="https://crazyn2.github.io/2021/06/22/vnc-config/index.html">
+  <meta name="description" content="克莱森的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="crazyn的个人博客">
+<meta property="og:url" content="https://crazyn2.github.io/archives/2021/07/index.html">
 <meta property="og:site_name" content="crazyn的个人博客">
-<meta property="og:description" content="VNC实现远程桌面管理服务器操作系统: Ubuntu20.04VNC服务器端:TigerVNC客户端操作系统: Ubuntu20.04 远程服务器配置如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。  安装xfce4图形界面1sudo apt update &amp;&amp;a">
+<meta property="og:description" content="克莱森的博客">
 <meta property="og:locale">
-<meta property="og:image" content="https://crazyn2.github.io/2021/06/22/vnc-config/board.png">
-<meta property="article:published_time" content="2021-06-22T11:18:15.000Z">
-<meta property="article:modified_time" content="2021-06-22T12:02:51.503Z">
 <meta property="article:author" content="Crazyn">
 <meta property="article:tag" content="Growing">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://crazyn2.github.io/2021/06/22/vnc-config/board.png">
   
     <link rel="alternative" href="/atom.xml" title="crazyn的个人博客" type="application/atom+xml">
   
@@ -146,227 +142,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vnc-config" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      vnc config
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/07/03/catdriver-debian/" class="archive-article-date">
+  	<time datetime="2021-07-03T11:19:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/07/03/catdriver-debian/">catdriver-debian</a>
     </h1>
   
 
-        
-        <a href="/2021/06/22/vnc-config/" class="archive-article-date">
-  	<time datetime="2021-06-22T11:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1><span id="vnc实现远程桌面管理">VNC实现远程桌面管理</span></h1><p>服务器操作系统: Ubuntu20.04<br>VNC服务器端:TigerVNC<br>客户端操作系统: Ubuntu20.04</p>
-<h2><span id="远程服务器配置">远程服务器配置</span></h2><p>如果gnome图形界面未加入开机启动项，那么是可以使用gnome配置远程桌面。如果gnome图形界面是开机启动项，那么还是额外安装xfce4作为图形界面，不然会出现黑屏的现象。</p>
-<ol>
-<li>安装xfce4图形界面<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y</span><br></pre></td></tr></table></figure></li>
-<li>安装TigerVNC，高性能 VNC 服务器，并被积极维护。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tigervnc-standalone-server tigervnc-common</span><br></pre></td></tr></table></figure></li>
-<li>运行vncserver命令，初始配置并设置密码，运行时不要使用 sudo<br>VncAuth设置密码认证，TLSVnc设置VNC加密传输<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -SecurityTypes&#x3D;VncAuth,TLSVnc</span><br></pre></td></tr></table></figure>
+        <div class="article-info info-on-right">
+          
+          
 
-</li>
-</ol>
-<p>系统将提示您输入并确认密码，以及是否将其设置为仅查看密码。如果您选择设置仅查看密码，则用户将无法使用鼠标和键盘与 VNC 实例进行交互。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">You will require a password to access your desktops.</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y&#x2F;n)? n</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;xauth:  file &#x2F;home&#x2F;typhoon&#x2F;.Xauthority does not exist</span><br><span class="line"></span><br><span class="line">New &#39;server2.typhoon.org:1 (typhoon)&#39; desktop at :1 on machine server2.typhoon.org</span><br><span class="line"></span><br><span class="line">Starting applications specified in &#x2F;etc&#x2F;X11&#x2F;Xvnc-session</span><br><span class="line">Log file is &#x2F;home&#x2F;typhoon&#x2F;.vnc&#x2F;server2.typhoon.org:1.log</span><br><span class="line"></span><br><span class="line">Use xtigervncviewer -SecurityTypes VncAuth -passwd &#x2F;home&#x2F;typhoon&#x2F;.vnc&#x2F;passwd :1 to connect to the VNC server.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>第一次 vncserver 运行命令时，它将创建密码文件并将其存储在 ~/.vnc 目录中，如果不存在，将创建该目录。</p>
-<p>注意上面输出中主机名之后的 :1 。这表示运行 vnc 服务器的显示端口号。在我们的例子中，服务器在 TCP 端口 5901 (5900 + 1)上运行。如果您创建第二个实例， vncserver 它将在下一个空闲端口上运行，即 :2 这意味着服务器正在端口 5902 (5900 + 2)上运行。</p>
-<p>重要的是要记住，当使用 VNC 服务器时， :X 是一个引用的显示端口 5900+X 。<br>4. 配置 VNC 服务器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-<p>输入以下内容</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"><span class="built_in">exec</span> startxfce4 </span><br></pre></td></tr></table></figure>
-<p>~/.vnc/xstartup 文件还需要具有执行权限</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-<p>如果需要将附加选项传递给 VNC 服务器，则可以创建一个名为 config 的文件，并为每行添加一个选项。这是一个例子：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vnc/config</span><br></pre></td></tr></table></figure>
-<p>增加以下内容</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">geometry=1920x1084</span><br><span class="line">dpi=96</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>停止vncserver服务实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
-<h2><span id="本地机配置">本地机配置</span></h2>VNC客户端: noVNC</li>
-</ol>
-<blockquote>
-<p>noVNC github地址:<br><a target="_blank" rel="noopener" href="https://github.com/novnc/noVNC">https://github.com/novnc/noVNC</a></p>
-</blockquote>
-<ol>
-<li>下载后，终端切换到noVNC工作目录，执行命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./utils/launch.sh --vnc &#123;服务器ip&#125;:&#123;vnc端口&#125;</span><br></pre></td></tr></table></figure></li>
-<li>根据执行命令输出提示，在浏览器打开地址即可<h2><span id="xfce4安装后的基本配置">xfce4安装后的基本配置</span></h2></li>
-</ol>
-<h3><span id="适配屏幕大小">适配屏幕大小</span></h3><ol>
-<li>打开面板首选项。所有应用程序-&gt;设置-&gt;面板</li>
-<li>面板一栏，图标，选择自动调整大小<br><img src="/2021/06/22/vnc-config/board.png"><h3><span id="设置黑暗主题">设置黑暗主题</span></h3></li>
-<li>打开外观设置。所有应用程序-&gt;设置-&gt;外观</li>
-<li>样式中选择Adwaita-dark，只要是-dark结尾的都是黑暗主题<h3><span id="设置输入法">设置输入法</span></h3></li>
-<li>安装ibus<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install ibus ibus-pinyin</span><br></pre></td></tr></table></figure></li>
-<li>打开ibus。打开外观设置。所有应用程序-&gt;设置-&gt;iBus首选项，点击”是”</li>
-<li>根据提示添加到$HOME/.bashrc<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GTK_IM_MODULE&#x3D;ibus</span><br><span class="line">export XMODIFIERS&#x3D;@im&#x3D;ibus</span><br><span class="line">export QT_IM_MODULE&#x3D;ibus</span><br></pre></td></tr></table></figure></li>
-<li>点击右上角的输入法图表，</li>
-</ol>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://crazyn2.github.io/2021/06/22/vnc-config/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/07/03/catdriver-debian/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          catdriver-debian
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/06/14/comusing-network/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">comusing network</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">VNC实现远程桌面管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">远程服务器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">本地机配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">xfce4安装后的基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.1.</span> <span class="toc-text">适配屏幕大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.2.</span> <span class="toc-text">设置黑暗主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.3.</span> <span class="toc-text">设置输入法</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -389,8 +207,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
