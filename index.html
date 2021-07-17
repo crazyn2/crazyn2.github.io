@@ -144,6 +144,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MITM-tools" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/17/MITM-tools/">MITM tools</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/17/MITM-tools/" class="archive-article-date">
+  	<time datetime="2021-07-17T07:13:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="中间人工具">中间人工具</span></h1><p>操作系统: Ubuntu20.04</p>
+<h2><span id="hetty">Hetty</span></h2><p>开源免费, 处于早期阶段，功能较少，更新频繁但项目进度很慢。作者和所在github项目活跃度不高，文档不但更新速度慢，而且内容缺乏<br>运行环境: Docker运行dstotijn/hetty镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v <span class="variable">$HOME</span>/.hetty:/root/.hetty -p 8080:8080 --name hetty dstotijn/hetty</span><br></pre></td></tr></table></figure>
+<h3><span id="hetty控制台">Hetty控制台</span></h3><ol>
+<li>Firefox浏览器地址输入<a target="_blank" rel="noopener" href="http://localhost:8080/%E3%80%82URL%E5%BF%85%E9%A1%BB%E6%98%AFhttp://localhost:8080/">http://localhost:8080/。URL必须是http://localhost:8080/</a>, <a target="_blank" rel="noopener" href="http://127.0.0.1:8080/%E6%98%AF%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84">http://127.0.0.1:8080/是无法访问的</a></li>
+<li>创建一个项目后，就可以在Proxy那一栏查看抓包记录。</li>
+<li>Firefox浏览器的FoxyProxy插件设置代理<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a></li>
+<li>切换到hetty代理模式，打开http网站，Hetty的Proxy那一栏就会看到抓包记录<h3><span id="sslttl证书配置">SSL/TTL证书配置</span></h3><blockquote>
+<p>参考资料, 虽然是mitproxy的文档，但是步骤基本一样，而且很详细，各种场景基本都有。这里就只写我用到的方法<br><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
+</blockquote>
+</li>
+<li>curl命令行使用<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --proxy 127.0.0.1:8080 --cacert ~/.hetty/hetty_cert.pem https://www.google.com.sg/</span><br></pre></td></tr></table></figure></li>
+<li>Firefox浏览器导入证书</li>
+</ol>
+<ul>
+<li>打开Firefox的Settings,点击左边Privacy &amp; Security一栏，滑动页面到Certificates，点击View Certificates…</li>
+<li>在弹出框中选择Authorities,点击import,选择你要导入的pem证书文件即可。不要在Your Certificates中导入证书，会失败的。</li>
+</ul>
+<ol start="3">
+<li>Hetty官方文档方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp ~&#x2F;.hetty&#x2F;hetty_cert.pem &#x2F;usr&#x2F;local&#x2F;share&#x2F;ca-certificates&#x2F;hetty.crt</span><br><span class="line">sudo update-ca-certificates</span><br></pre></td></tr></table></figure>
+但是本人测试没用，电脑重启也不行，后来看了mitproxy的官方文档才知道缺了一步。Ubuntu是要用openssl把pem文件转成crt文件，而不是直接改文件后缀名, 这里本人未实际测试。所以Hetty的官方文档确实很烂， 开发者也没有回答本人的问题。<h2><span id="mitmproxy">mitmproxy</span></h2>开源免费，社区活跃度高，功能丰富，文档完善<br>运行环境: Docker运行mitmproxy/mitmproxy镜像<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v ~/.mitmproxy:/home/mitmproxy/.mitmproxy -p 8080:8080 -p 8081:8081 --name mitproxy mitmproxy/mitmproxy mitmweb --web-host 0.0.0.0</span><br></pre></td></tr></table></figure>
+<h3><span id="ssltls证书配置">SSL/TLS证书配置</span></h3>mitproxy配置看我前面的hetty那部分即可, 推荐去看官方文档，内容很详细<blockquote>
+<p>官方文档<br><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/concepts-certificates/">https://docs.mitmproxy.org/stable/concepts-certificates/</a></p>
+</blockquote>
+<h2><span id="owasp-zap">OWASP ZAP</span></h2>开源免费</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/17/MITM-tools/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kali-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -768,74 +856,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/01/28/doc-cat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-iter-download" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/22/iter-download/">服务器和客户端实现文件断点续传</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/22/iter-download/" class="archive-article-date">
-  	<time datetime="2021-01-22T12:47:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="服务器和客户端实现文件断点续传"><a href="#服务器和客户端实现文件断点续传" class="headerlink" title="服务器和客户端实现文件断点续传"></a>服务器和客户端实现文件断点续传</h1><p>开发语言：Python3.8.6</p>
-<p>服务器: Flask框架</p>
-<p>客户端: requests库</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2>
-        
-          <a class="article-more-a" href="/2021/01/22/iter-download/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/22/iter-download/">展开全文 >></a>
         </p>
       
 
