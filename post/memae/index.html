@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>分类 - Even - A super concise theme for Hugo</title>
+  <title>记忆自编码器(MemAE) - Even - A super concise theme for Hugo</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="crazyn2" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="crazyn2" /><meta name="description" content="主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 模型改进 在原生自编码器的基础上，在编码器和解码器之间增加了记忆模" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.101.0 with theme even" />
 
 
-<link rel="canonical" href="https://crazyn2.github.io/categories/" />
-  <link href="https://crazyn2.github.io/categories/index.xml" rel="alternate" type="application/rss+xml" title="Even - A super concise theme for Hugo" />
-  <link href="https://crazyn2.github.io/categories/index.xml" rel="feed" type="application/rss+xml" title="Even - A super concise theme for Hugo" />
+<link rel="canonical" href="https://crazyn2.github.io/post/memae/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,15 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="Hugo theme even example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://crazyn2.github.io/categories/" />
+<meta property="og:title" content="记忆自编码器(MemAE)" />
+<meta property="og:description" content="主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 模型改进 在原生自编码器的基础上，在编码器和解码器之间增加了记忆模" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://crazyn2.github.io/post/memae/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-29T19:10:05+08:00" />
+<meta property="article:modified_time" content="2022-07-29T19:10:05+08:00" />
 
-<meta itemprop="name" content="Categories">
-<meta itemprop="description" content="Hugo theme even example site."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="Hugo theme even example site."/>
+<meta itemprop="name" content="记忆自编码器(MemAE)">
+<meta itemprop="description" content="主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 模型改进 在原生自编码器的基础上，在编码器和解码器之间增加了记忆模"><meta itemprop="datePublished" content="2022-07-29T19:10:05+08:00" />
+<meta itemprop="dateModified" content="2022-07-29T19:10:05+08:00" />
+<meta itemprop="wordCount" content="382">
+<meta itemprop="keywords" content="deep-learning," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="记忆自编码器(MemAE)"/>
+<meta name="twitter:description" content="主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 模型改进 在原生自编码器的基础上，在编码器和解码器之间增加了记忆模"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,19 +122,95 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <div class="terms">
-      <div class="terms-title">
-        共计 1 个分类
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">记忆自编码器(MemAE)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-07-29 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"> 深度学习 </a>
+            </div>
+        
       </div>
-      <div class="terms-tags">
-        <a class="terms-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-            深度学习
-            <span class="terms-count">1</span>
-          </a>
-        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#模型改进">模型改进</a></li>
+        <li><a href="#源代码分析">源代码分析</a></li>
+        <li><a href="#个人猜想">个人猜想</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>主要功能:</p>
+<ul>
+<li>异常检测(红框框出图像异常区域)</li>
+<li>特征提取(从图像中提取指定的特征)</li>
+</ul>
+<h2 id="模型改进">模型改进</h2>
+<p>在原生自编码器的基础上，在编码器和解码器之间增加了记忆模块，特征提取效果更好
+<img src="https://raw.githubusercontent.com/donggong1/memae-anomaly-detection/master/imgs/network.jpg" alt="">
+$\frac{abc}{xyz}$</p>
+<p>$$
+\frac{abc123}{xyz123}
+$$</p>
+<h2 id="源代码分析">源代码分析</h2>
+<p>项目中使用的数据集</p>
+<ul>
+<li>minist数据集(图像数据集，手写体，PyTorch等深度学习框基本自带)</li>
+<li>UCSD Anomaly Detection Dataset(视频数据集，视频流的图片都提取出来，<a href="http://www.svcl.ucsd.edu/projects/anomaly/dataset.html">加利福尼亚大学圣迭戈分校提供的异常检测数据集</a>，非步行和异常步行视为异常，比如骑自行车、滑板、开车、轮椅等等)</li>
+</ul>
+<p>mnist数据集比较常用，就不介绍了。</p>
+<p>UCSD数据集是固定摄像头记录的行人视频，视频拆分成图片。UCSD划分为两个子集，对应不同的场景。每个子集划分为训练集和测试集，训练集都是正常样本，测试集中夹杂者异常样本，同时记录异常数据所在图像的区域。</p>
+<h2 id="个人猜想">个人猜想</h2>
+<ul>
+<li>不在编码器和解码器之间增加记忆模块，而是在其他地方增加，是否会取得更好的效果</li>
+</ul>
+
     </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">crazyn2</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-07-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/deep-learning/">deep-learning</a>
+          </div>
+      <nav class="post-nav">
+        
+        
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

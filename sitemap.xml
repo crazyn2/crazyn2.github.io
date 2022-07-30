@@ -3,24 +3,55 @@
   
   <url>
     <loc>https://crazyn2.github.io/categories/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://crazyn2.github.io/tags/deep-learning/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://crazyn2.github.io/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://crazyn2.github.io/series/</loc>
+    <loc>https://crazyn2.github.io/post/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://crazyn2.github.io/tags/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://crazyn2.github.io/post/memae/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://crazyn2.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2022-07-29T19:10:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://crazyn2.github.io/series/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
