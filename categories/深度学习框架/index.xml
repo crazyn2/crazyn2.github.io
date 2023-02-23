@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>深度学习框架 on Even - A super concise theme for Hugo</title>
+    <link>https://crazyn2.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in 深度学习框架 on Even - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 31 Aug 2022 20:13:36 +0800</lastBuildDate><atom:link href="https://crazyn2.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pytorch多进程训练</title>
+      <link>https://crazyn2.github.io/post/multi/</link>
+      <pubDate>Wed, 31 Aug 2022 20:13:36 +0800</pubDate>
+      
+      <guid>https://crazyn2.github.io/post/multi/</guid>
+      <description>Pytorch只支持spawn和forserver创建子进程方式。Windows平台下的Python，默认使用spawn，也只支持spawn</description>
+    </item>
+    
+  </channel>
+</rss>

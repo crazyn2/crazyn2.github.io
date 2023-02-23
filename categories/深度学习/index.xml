@@ -13,7 +13,7 @@
       <pubDate>Fri, 29 Jul 2022 19:10:05 +0800</pubDate>
       
       <guid>https://crazyn2.github.io/post/memae/</guid>
-      <description>主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 模型改进 在原生自编码器的基础上，在编码器和解码器之间增加了记忆模</description>
+      <description>主要功能: 异常检测(红框框出图像异常区域) 特征提取(从图像中提取指定的特征) 相对深度自编码器的改进: 提高对异常数据的敏感程度，即两极分化正常</description>
     </item>
     
   </channel>
